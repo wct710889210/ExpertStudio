@@ -1,5 +1,7 @@
 package com.pwfz.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 
 @Entity
@@ -29,6 +31,7 @@ public class ModuleItem {
         this.type = type;
     }
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "user_id")
     public User getUser() {

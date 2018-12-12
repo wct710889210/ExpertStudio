@@ -1,22 +1,17 @@
-package com.pwfz.entity;
+package com.pwfz.modle;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.pwfz.entity.ModuleItem;
+import com.pwfz.entity.User;
 
-import javax.persistence.*;
 import java.sql.Timestamp;
 
-@Entity
-@Table(name = "file_item", schema = "j2ee_design")
-public class FileItem {
+public class FileItemModle {
     private int id;
     private User uploadUser;
     private Timestamp uploadTime;
     private String fileName;
     private String filePath;
     private ModuleItem moduleItem;
-
-    @Id
-    @Column(name = "id")
     public int getId() {
         return id;
     }
@@ -25,9 +20,6 @@ public class FileItem {
         this.id = id;
     }
 
-    @JsonBackReference
-    @ManyToOne
-    @JoinColumn(name = "upload_user_id")
     public User getUploadUser() {
         return uploadUser;
     }
@@ -36,8 +28,6 @@ public class FileItem {
         this.uploadUser = uploadUser;
     }
 
-    @Basic
-    @Column(name = "upload_time")
     public Timestamp getUploadTime() {
         return uploadTime;
     }
@@ -46,8 +36,6 @@ public class FileItem {
         this.uploadTime = uploadTime;
     }
 
-    @Basic
-    @Column(name = "file_name")
     public String getFileName() {
         return fileName;
     }
@@ -56,8 +44,6 @@ public class FileItem {
         this.fileName = fileName;
     }
 
-    @Basic
-    @Column(name = "file_path")
     public String getFilePath() {
         return filePath;
     }
@@ -66,9 +52,6 @@ public class FileItem {
         this.filePath = filePath;
     }
 
-    @JsonBackReference
-    @ManyToOne
-    @JoinColumn(name = "module_id")
     public ModuleItem getModuleItem() {
         return moduleItem;
     }
@@ -76,4 +59,6 @@ public class FileItem {
     public void setModuleItem(ModuleItem moduleItem) {
         this.moduleItem = moduleItem;
     }
+
+
 }

@@ -8,7 +8,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan("com.pwfz.controller")
+@ComponentScan("com.pwfz")
 public class ServletContext {
 
     @Bean

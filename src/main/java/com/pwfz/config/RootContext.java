@@ -25,7 +25,7 @@ public class RootContext {
         dataSource.setDriverClass("com.mysql.cj.jdbc.Driver");
         dataSource.setJdbcUrl("jdbc:mysql://localhost/j2ee_design?useSSL=false&serverTimezone=Asia/Shanghai");
         dataSource.setUser("root");
-        dataSource.setPassword("wct123456");
+        dataSource.setPassword("srnf1997");
         return dataSource;
     }
 
