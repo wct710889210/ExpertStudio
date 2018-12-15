@@ -32,6 +32,7 @@ public class FileItemController {
         ModuleItem moduleItem=new ModuleItem();
         moduleItem.setId(1);
         moduleItem.setType("1");
+        int u=1;
 
         return fileItemService.selectfile(moduleItem);
     }
