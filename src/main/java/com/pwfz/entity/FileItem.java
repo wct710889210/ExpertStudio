@@ -3,14 +3,14 @@ package com.pwfz.entity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.util.Date;
 
 @Entity
 @Table(name = "file_item", schema = "j2ee_design")
 public class FileItem {
     private int id;
     private User uploadUser;
-    private Timestamp uploadTime;
+    private Date uploadTime;
     private String fileName;
     private String filePath;
     private ModuleItem moduleItem;
@@ -36,13 +36,13 @@ public class FileItem {
         this.uploadUser = uploadUser;
     }
 
-    @Basic
     @Column(name = "upload_time")
-    public Timestamp getUploadTime() {
+    @Temporal(TemporalType.TIMESTAMP)
+    public Date getUploadTime() {
         return uploadTime;
     }
 
-    public void setUploadTime(Timestamp uploadTime) {
+    public void setUploadTime(Date uploadTime) {
         this.uploadTime = uploadTime;
     }
 

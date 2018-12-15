@@ -10,11 +10,13 @@ public class MultiPhotoItem {
     private int id;
     private ModuleItem moduleItem;
     private String photoPath;
-    private int order;
+    private String description;
+    private int sequence;
     private String linkPath;
 
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getId() {
         return id;
     }
@@ -34,7 +36,6 @@ public class MultiPhotoItem {
         this.moduleItem = moduleItem;
     }
 
-    @Basic
     @Column(name = "photo_path")
     public String getPhotoPath() {
         return photoPath;
@@ -44,24 +45,31 @@ public class MultiPhotoItem {
         this.photoPath = photoPath;
     }
 
-    @Basic
-    @Column(name = "order")
-    public int getOrder() {
-        return order;
+    @Column(name = "description")
+    public String getDescription() {
+        return description;
     }
 
-    public void setOrder(int order) {
-        this.order = order;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    @Basic
+    @Column(name = "sequence")
+    public int getSequence() {
+        return sequence;
+    }
+
+    public void setSequence(int sequence) {
+        this.sequence = sequence;
+    }
+
     @Column(name = "link_path")
-    public String getLinkPaht() {
+    public String getLinkPath() {
         return linkPath;
     }
 
-    public void setLinkPaht(String linkPaht) {
-        this.linkPath = linkPaht;
+    public void setLinkPath(String linkPath) {
+        this.linkPath = linkPath;
     }
 
 }
