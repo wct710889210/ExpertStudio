@@ -1,16 +1,11 @@
 package com.pwfz.controller;
 
-import com.pwfz.entity.PassageItem;
-import com.pwfz.modle.FileItemModle;
-import com.pwfz.modle.PassageItemModule;
-import com.pwfz.repository.Passageupdate;
+import com.pwfz.model.PassageItemModule;
 import com.pwfz.service.PassageItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.sql.Timestamp;
 
 @Controller
 @RequestMapping("/singlepassage")

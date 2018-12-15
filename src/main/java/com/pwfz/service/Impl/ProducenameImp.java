@@ -1,4 +1,4 @@
-package com.pwfz.service.Imp;
+package com.pwfz.service.Impl;
 
 import com.pwfz.service.Producename;
 import org.springframework.stereotype.Service;

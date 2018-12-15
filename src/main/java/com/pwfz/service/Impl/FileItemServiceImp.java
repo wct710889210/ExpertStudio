@@ -1,9 +1,8 @@
-package com.pwfz.service.Imp;
+package com.pwfz.service.Impl;
 
 import com.pwfz.entity.FileItem;
 import com.pwfz.entity.ModuleItem;
-import com.pwfz.entity.User;
-import com.pwfz.modle.FileItemModle;
+import com.pwfz.model.FileItemModle;
 import com.pwfz.repository.FileItemRepository;
 import com.pwfz.service.FileItemService;
 import org.springframework.beans.BeanUtils;

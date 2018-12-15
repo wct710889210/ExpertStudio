@@ -1,9 +1,8 @@
-package com.pwfz.service.Imp;
+package com.pwfz.service.Impl;
 
 import com.pwfz.entity.PassageItem;
-import com.pwfz.modle.PassageItemModule;
+import com.pwfz.model.PassageItemModule;
 import com.pwfz.repository.PassageItemRepository;
-import com.pwfz.repository.Passageupdate;
 import com.pwfz.service.PassageItemService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;

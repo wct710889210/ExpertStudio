@@ -3,22 +3,15 @@ package com.pwfz.controller;
 import com.pwfz.entity.FileItem;
 import com.pwfz.entity.ModuleItem;
 import com.pwfz.entity.User;
-import com.pwfz.modle.FileItemModle;
+import com.pwfz.model.FileItemModle;
 import com.pwfz.repository.FileItemRepository;
 import com.pwfz.service.FileItemService;
-import com.pwfz.service.Imp.FileItemServiceImp;
 import com.pwfz.service.Producename;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
-import javax.servlet.http.HttpServletRequest;
-import java.io.File;
 import java.util.List;
 
 @Controller

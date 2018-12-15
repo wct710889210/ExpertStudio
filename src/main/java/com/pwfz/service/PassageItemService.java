@@ -1,7 +1,6 @@
 package com.pwfz.service;
 
-import com.pwfz.entity.PassageItem;
-import com.pwfz.modle.PassageItemModule;
+import com.pwfz.model.PassageItemModule;
 import org.springframework.stereotype.Service;
 
 @Service
