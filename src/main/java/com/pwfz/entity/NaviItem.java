@@ -11,9 +11,11 @@ public class NaviItem {
     private Integer moduleId;      //设置为一对一关联不利于json转换，同时此信息利用也较少
     private Integer fatherId;      //设置为多对一关联不利于json转换
     private String linkPath;
+    private int sequence;
     private List<NaviItem> sons;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     public int getId() {
         return id;
@@ -49,7 +51,6 @@ public class NaviItem {
         this.fatherId = fatherId;
     }
 
-    @Basic
     @Column(name = "link_path")
     public String getLinkPath() {
         return linkPath;
@@ -59,8 +60,21 @@ public class NaviItem {
         this.linkPath = linkPath;
     }
 
-    @OneToMany(fetch = FetchType.EAGER)
+
+    @Column(name = "sequence")
+    public int getSequence() {
+        return sequence;
+    }
+
+    public void setSequence(int sequence) {
+        this.sequence = sequence;
+    }
+
+    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.MERGE)
     @JoinColumn(name = "father_id")
+//    @OrderBy("sequence")
+    @OrderColumn(name = "sequence")
+    //father_id和sequence在更新顺序前会先被设置为null
     public List<NaviItem> getSons() {
         return sons;
     }

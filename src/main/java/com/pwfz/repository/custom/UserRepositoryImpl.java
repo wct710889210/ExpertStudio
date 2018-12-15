@@ -3,6 +3,7 @@ package com.pwfz.repository.custom;
 import com.pwfz.entity.User;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.util.List;

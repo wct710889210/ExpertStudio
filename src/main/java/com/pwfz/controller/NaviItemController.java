@@ -4,6 +4,7 @@ import com.pwfz.entity.NaviItem;
 import com.pwfz.repository.NaviItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -17,31 +18,33 @@ public class NaviItemController {
 
     @RequestMapping(value = "get",produces = "application/json; charset=UTF-8")
     @ResponseBody
-    public List<NaviItem> get(){
-        List<NaviItem> naviItems =  naviItemRepository.findAllFirstNavi(1);
+    public List<NaviItem> get(int moduleId){
+        List<NaviItem> naviItems =  naviItemRepository.findAllFirstNavi(moduleId);
         return naviItems;
     }
 
-    private String naviToJson(List<NaviItem> naviItems,String result){
-        result += "(";
+    @RequestMapping(value = "save",produces = "application/json; charset=UTF-8")
+    @ResponseBody
+    public String save(@RequestBody List<NaviItem> naviItems){
+        //在更新之前设置顺序sequence，已经用下面的方式取代
+//        int sequence = 1;
+//        int subSequence;
+//        for (NaviItem naviItem:naviItems){
+//            naviItem.setSequence(sequence++);
+//            subSequence = 1;
+//            for (NaviItem son:naviItem.getSons()){
+//                son.setSequence(subSequence++);
+//            }
+//        }
+
+        //更新一级标题的序列顺序，二级标题使用@OrderColumn来维持顺序
+        int sequence = 1;
         for (NaviItem naviItem:naviItems){
-            result = result + naviItem.getName()+",";
-            List<NaviItem> sons = naviItem.getSons();
-            if(sons.size() != 0)
-                result = naviToJson(sons,result);
+            naviItem.setSequence(sequence++);
         }
-        result += ")";
-        return result;
+        //todo 失去关联后的NaviItem应该被删除
+        naviItemRepository.updateNaviItems(naviItems);
+        return "success";
     }
 
-    private void print(List<NaviItem> naviItems){
-        System.out.print("(");
-        for (NaviItem naviItem:naviItems){
-            System.out.print(naviItem.getName()+",");
-            List<NaviItem> sons = naviItem.getSons();
-            if(sons.size() != 0)
-                print(sons);
-        }
-        System.out.print(")");
-    }
 }
