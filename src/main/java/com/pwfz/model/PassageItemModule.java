@@ -1,13 +1,10 @@
-package com.pwfz.entity;
+package com.pwfz.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.pwfz.entity.ModuleItem;
 
-import javax.persistence.*;
 import java.sql.Timestamp;
 
-@Entity
-@Table(name = "passage_item", schema = "j2ee_design")
-public class PassageItem {
+public class PassageItemModule {
     private int id;
     private String title;
     private int userId;
@@ -16,8 +13,6 @@ public class PassageItem {
     private String content;
     private String titlePhotoPath;
 
-    @Id
-    @Column(name = "id")
     public int getId() {
         return id;
     }
@@ -26,8 +21,6 @@ public class PassageItem {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "title")
     public String getTitle() {
         return title;
     }
@@ -36,8 +29,6 @@ public class PassageItem {
         this.title = title;
     }
 
-    @Basic
-    @Column(name = "user_id")
     public int getUserId() {
         return userId;
     }
@@ -46,9 +37,6 @@ public class PassageItem {
         this.userId = userId;
     }
 
-    @JsonBackReference
-    @ManyToOne
-    @JoinColumn(name = "module_id")
     public ModuleItem getModuleItem() {
         return moduleItem;
     }
@@ -57,8 +45,6 @@ public class PassageItem {
         this.moduleItem = moduleItem;
     }
 
-    @Basic
-    @Column(name = "relese_time")
     public Timestamp getReleseTime() {
         return releseTime;
     }
@@ -67,8 +53,6 @@ public class PassageItem {
         this.releseTime = releseTime;
     }
 
-    @Basic
-    @Column(name = "content")
     public String getContent() {
         return content;
     }
@@ -77,8 +61,6 @@ public class PassageItem {
         this.content = content;
     }
 
-    @Basic
-    @Column(name = "title_photo_path")
     public String getTitlePhotoPath() {
         return titlePhotoPath;
     }
@@ -86,5 +68,6 @@ public class PassageItem {
     public void setTitlePhotoPath(String titlePhotoPath) {
         this.titlePhotoPath = titlePhotoPath;
     }
+
 
 }

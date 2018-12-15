@@ -1,5 +1,7 @@
 package com.pwfz.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -59,7 +61,6 @@ public class NaviItem {
     public void setLinkPath(String linkPath) {
         this.linkPath = linkPath;
     }
-
 
     @Column(name = "sequence")
     public int getSequence() {

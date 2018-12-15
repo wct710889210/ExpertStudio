@@ -1,5 +1,7 @@
 package com.pwfz.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.Collection;
 
@@ -38,6 +40,7 @@ public class User {
         this.password = password;
     }
 
+    @JsonBackReference
     @OneToMany(
             fetch = FetchType.EAGER,
             mappedBy = "user"

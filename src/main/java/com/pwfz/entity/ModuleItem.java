@@ -1,7 +1,6 @@
 package com.pwfz.entity;
 
 import com.pwfz.enumeration.ModuleType;
-
 import javax.persistence.*;
 
 @Entity
@@ -35,6 +34,7 @@ public class ModuleItem {
         this.type = type;
     }
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "user_id")
     public User getUser() {
