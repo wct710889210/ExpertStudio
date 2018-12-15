@@ -1,5 +1,7 @@
 package com.pwfz.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -59,6 +61,7 @@ public class NaviItem {
         this.linkPath = linkPath;
     }
 
+    @JsonBackReference
     @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "father_id")
     public List<NaviItem> getSons() {

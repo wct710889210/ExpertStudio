@@ -2,6 +2,7 @@ package com.pwfz.service.Imp;
 
 import com.pwfz.entity.FileItem;
 import com.pwfz.entity.ModuleItem;
+import com.pwfz.entity.User;
 import com.pwfz.modle.FileItemModle;
 import com.pwfz.repository.FileItemRepository;
 import com.pwfz.service.FileItemService;
@@ -33,4 +34,28 @@ public class FileItemServiceImp implements FileItemService {
         }
         return fileItemModles;
     }
+
+
+    @Override
+    public int savefileitem(FileItemModle fileItemModle) {
+        FileItem fileItem = new FileItem();
+        BeanUtils.copyProperties(fileItemModle,fileItem);
+        fileItemRepository.save(fileItem);
+
+        return 0;
+    }
+
+    @Override
+    public int deletefile(FileItem fileItem) {
+        fileItemRepository.delete(fileItem);
+        return 0;
+    }
+
+   /* @Override
+    public String addfile(FileItemModle fileItemModle,int userid) {
+        FileItem fileItem=new FileItem();
+        BeanUtils.copyProperties(fileItemModle,fileItem);
+        fileItemRepository.addfile(fileItem,userid);
+        return null;
+    }*/
 }

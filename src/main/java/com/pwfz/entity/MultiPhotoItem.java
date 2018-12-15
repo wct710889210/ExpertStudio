@@ -1,5 +1,7 @@
 package com.pwfz.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 
 @Entity
@@ -21,6 +23,7 @@ public class MultiPhotoItem {
         this.id = id;
     }
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "module_id")
     public ModuleItem getModuleItem() {
