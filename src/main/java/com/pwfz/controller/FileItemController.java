@@ -30,10 +30,10 @@ public class FileItemController {
 
     @RequestMapping("select")
     @ResponseBody
-    public List<FileItemModle> findallfile()
+    public List<FileItemModle> findallfile(int moduleId)
     {
-        int moduleid=1;
-        return fileItemService.selectfile(moduleid);
+   /*     int moduleId=1;*/
+        return fileItemService.selectfile(moduleId);
     }
 
     @RequestMapping("savefile")
@@ -41,7 +41,6 @@ public class FileItemController {
     public Json savefile(HttpServletRequest request, MultipartFile files,FileItemModle fileItemModle)
     {
         Json json = new Json();
-        fileItemModle.setFileName("nbnb");
         String rootPath = new File(request.getServletContext().getRealPath("")).getParentFile().getAbsolutePath();
         //如果父目录不存在，则创建父目录
         File parent  = new File(rootPath+File.separator+"uploadFiles"+File.separator+"file");
@@ -72,48 +71,12 @@ public class FileItemController {
 
     @RequestMapping("deletefile")
     @ResponseBody
-    public String deletefile()
+    public String deletefile(FileItemModle fileItemModle)
     {
-        int id=3;
-        String filename="nbnb";
-        String filepath="IG";
-        FileItem fileItem=new FileItem();
-        fileItem.setId(id);
-        fileItem.setFileName(filename);
-        fileItem.setFilePath(filepath);
-        fileItemService.deletefile(fileItem);
+        fileItemService.deletefile(fileItemModle);
         return "success";
     }
 
 
-   /* @RequestMapping("addfile")
-    public String addfile(@RequestParam(value="userid",required=false) int userid, HttpServletRequest request) {
-       *//* CommonsMultipartResolver commonsMultipartResolver = new CommonsMultipartResolver(request.getSession().getServletContext());
-        // 设置编码
-        commonsMultipartResolver.setDefaultEncoding("utf-8");
-        if (commonsMultipartResolver.isMultipart(request)) {//有文件上传
-            System.out.println("have photo");
-            MultipartHttpServletRequest fileRequest = (MultipartHttpServletRequest) request;
-            MultipartFile file = fileRequest.getFile("image");
-            if ((!file.isEmpty()) && (!file.getOriginalFilename().equals(""))) {
-                //String path = request.getServletContext().getRealPath("static"+File.separator+"uploadFiles");
-                String path = new File(request.getServletContext().getRealPath("")).getParentFile().getAbsolutePath() + File.separator + "uploadFiles";
-                //send+="+not empty and path:"+path+"\n";
-                String fileName = file.getOriginalFilename();
-                File pFile = new File(path);
-                pFile.setWritable(true, false);
-                if (!pFile.exists()) {
-                    pFile.mkdirs();
-                }
-                String ultiPath = path + File.separator + producename.producename() + fileName.substring(fileName.lastIndexOf(".") + 1);
-*//*
-         *//*   }*//*
-*//*        }*//*
-        System.out.println(userid);
-        FileItemModle fileItemModle=new FileItemModle();
-        fileItemModle.setId(123);
-        fileItemModle.setFilePath("uzi");
-        fileItemService.addfile(fileItemModle,userid);
-        return "success";
-    }*/
+
 }

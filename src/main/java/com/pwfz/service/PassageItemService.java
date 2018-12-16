@@ -3,8 +3,10 @@ package com.pwfz.service;
 import com.pwfz.model.PassageItemModule;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public interface PassageItemService {
-    PassageItemModule findpassage(int id);
-    int updatepassage(PassageItemModule passageItemModule);
+    List<PassageItemModule> findpassage(int id);
+    void updatepassage(PassageItemModule passageItemModule);
 }

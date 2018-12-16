@@ -35,7 +35,7 @@ public class ModuleItem {
         this.type = type;
     }
 
-    @JsonBackReference
+ /*   @JsonBackReference*/
     @ManyToOne
     @JoinColumn(name = "user_id")
     public User getUser() {

@@ -8,10 +8,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /*@Transactional*/
 public interface PassageItemRepository extends JpaRepository<PassageItem,Integer> {
 
-    PassageItem findPassageItemByUserId( int userid);
+    @Query("select f from PassageItem f where f.userId = :userid ")
+    List<PassageItem> findAllByUserId(@Param("userid") int userid);
 
 
 

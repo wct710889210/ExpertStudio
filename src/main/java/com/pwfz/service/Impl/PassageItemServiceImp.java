@@ -8,6 +8,9 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class PassageItemServiceImp implements PassageItemService {
     @Autowired
@@ -15,21 +18,23 @@ public class PassageItemServiceImp implements PassageItemService {
 
 
     @Override
-    public PassageItemModule findpassage(int id) {
-        PassageItemModule passageItemModule=new PassageItemModule();
-        PassageItem passageItem=passageItemRepository.findPassageItemByUserId(id);
-        BeanUtils.copyProperties(passageItem,passageItemModule);
-        return passageItemModule;
+    public List<PassageItemModule> findpassage(int id) {
+        List<PassageItemModule> passageItemModules=new ArrayList<>();
+        List<PassageItem> passageItems=passageItemRepository.findAllByUserId(id);
+        for(PassageItem passageItem:passageItems)
+        {
+            PassageItemModule passageItemModule=new PassageItemModule();
+            BeanUtils.copyProperties(passageItem, passageItemModule);
+            passageItemModules.add(passageItemModule);
+        }
+        return passageItemModules;
     }
 
     @Override
-    public int updatepassage(PassageItemModule passageItemModule) {
-        /*int result=passageItemRepository.updatePassageItem(content,userid);
-        return result;*/
+    public void updatepassage(PassageItemModule passageItemModule) {
         PassageItem passageItem=new PassageItem();
         BeanUtils.copyProperties(passageItemModule,passageItem);
         passageItemRepository.save(passageItem);
-        return 1;
 
     }
 }

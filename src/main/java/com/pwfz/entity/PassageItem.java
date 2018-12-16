@@ -46,7 +46,7 @@ public class PassageItem {
         this.userId = userId;
     }
 
-    @JsonBackReference
+/*    @JsonBackReference*/
     @ManyToOne
     @JoinColumn(name = "module_id")
     public ModuleItem getModuleItem() {

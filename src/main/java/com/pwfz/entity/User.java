@@ -40,7 +40,7 @@ public class User {
         this.password = password;
     }
 
-    @JsonBackReference
+/*    @JsonBackReference*/
     @OneToMany(
             fetch = FetchType.EAGER,
             mappedBy = "user"

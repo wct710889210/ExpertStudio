@@ -25,7 +25,7 @@ public class MultiPhotoItem {
         this.id = id;
     }
 
-    @JsonBackReference
+/*    @JsonBackReference*/
     @ManyToOne
     @JoinColumn(name = "module_id")
     public ModuleItem getModuleItem() {

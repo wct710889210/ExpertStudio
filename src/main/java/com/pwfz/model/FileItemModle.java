@@ -20,7 +20,7 @@ public class FileItemModle {
         this.userId = userId;
     }
 
-    public int getModelid() {
+    public Integer getModelid() {
         return modelid;
     }
 

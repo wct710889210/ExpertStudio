@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 @Controller
 @RequestMapping("/passage")
@@ -25,19 +26,18 @@ public class PassageItemController {
 
     @RequestMapping("get")
     @ResponseBody
-    public PassageItemModule select()
+    public List<PassageItemModule> select(/*int userId*/)
     {
-        PassageItemModule passageItemModule=passageItemService.findpassage(1);
-        return passageItemModule;
+        int userId=1;
+        List<PassageItemModule> passageItemModules= passageItemService.findpassage(userId);
+        return passageItemModules;
     }
 
-    @RequestMapping("update")
+    @RequestMapping("upload")
     @ResponseBody
     public Json updatepassage(HttpServletRequest request, MultipartFile passagephoto,PassageItemModule passageItemModule)
     {
         Json json = new Json();
-        FileItemModle fileItemModle=new FileItemModle();
-        fileItemModle.setFileName("nbnb");
         String rootPath = new File(request.getServletContext().getRealPath("")).getParentFile().getAbsolutePath();
         //如果父目录不存在，则创建父目录
         File parent  = new File(rootPath+File.separator+"uploadpassage"+File.separator+"passagephoto");
@@ -55,13 +55,14 @@ public class PassageItemController {
             passageItemService.updatepassage(passageItemModule);
             json.setSuccess(true);
             json.setMsg("添加成功");
-            json.setObj(fileItemModle);
+            json.setObj(passageItemModule);
         } catch (IOException e) {
             e.printStackTrace();
             json.setSuccess(false);
         }finally {
             return json;
         }
+
     }
 
 

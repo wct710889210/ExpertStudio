@@ -17,8 +17,8 @@ public class FileItemServiceImp implements FileItemService {
     @Autowired
     FileItemRepository fileItemRepository;
 
-    public List<FileItemModle> selectfile(int moduleItem) {
-        List<FileItem> fileItems = fileItemRepository.findAllFileItem(moduleItem);
+    public List<FileItemModle> selectfile(int moduleId) {
+        List<FileItem> fileItems = fileItemRepository.findAllFileItem(moduleId);
         List<FileItemModle> fileItemModles = new ArrayList<>();
         for (FileItem fileItem : fileItems) {
             FileItemModle fileItemModle = new FileItemModle();
@@ -39,7 +39,9 @@ public class FileItemServiceImp implements FileItemService {
     }
 
     @Override
-    public int deletefile(FileItem fileItem) {
+    public int deletefile(FileItemModle fileItemModle) {
+        FileItem fileItem=new FileItem();
+        BeanUtils.copyProperties(fileItemModle,fileItem);
         fileItemRepository.delete(fileItem);
         return 0;
     }

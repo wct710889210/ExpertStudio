@@ -25,7 +25,7 @@ public class FileItem {
         this.id = id;
     }
 
-    @JsonBackReference
+/*    @JsonBackReference*/
     @ManyToOne
     @JoinColumn(name = "upload_user_id")
     public User getUploadUser() {
@@ -66,7 +66,7 @@ public class FileItem {
         this.filePath = filePath;
     }
 
-    @JsonBackReference
+/*    @JsonBackReference*/
     @ManyToOne
     @JoinColumn(name = "module_id")
     public ModuleItem getModuleItem() {
