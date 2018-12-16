@@ -17,17 +17,11 @@ public class FileItemServiceImp implements FileItemService {
     @Autowired
     FileItemRepository fileItemRepository;
 
-    public List<FileItemModle> selectfile(ModuleItem moduleItem) {
+    public List<FileItemModle> selectfile(int moduleItem) {
         List<FileItem> fileItems = fileItemRepository.findAllFileItem(moduleItem);
         List<FileItemModle> fileItemModles = new ArrayList<>();
         for (FileItem fileItem : fileItems) {
             FileItemModle fileItemModle = new FileItemModle();
-           /* fileItemModle.setFileName(fileItem.getFileName());
-            fileItemModle.setFilePath(fileItem.getFilePath());
-            fileItemModle.setId(fileItem.getId());
-            fileItemModle.setModuleItem(fileItem.getModuleItem());
-            fileItemModle.setUploadTime(fileItem.getUploadTime());
-            fileItemModle.setUploadUser(fileItem.getUploadUser());*/
             BeanUtils.copyProperties(fileItem,fileItemModle);
             fileItemModles.add(fileItemModle);
         }

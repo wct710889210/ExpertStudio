@@ -7,25 +7,33 @@ import java.sql.Timestamp;
 
 public class FileItemModle {
     private int id;
-    private User uploadUser;
+    private int userId;
     private Timestamp uploadTime;
     private String fileName;
     private String filePath;
-    private ModuleItem moduleItem;
+    private int modelid;
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public int getModelid() {
+        return modelid;
+    }
+
+    public void setModelid(int modelid) {
+        this.modelid = modelid;
+    }
+
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public User getUploadUser() {
-        return uploadUser;
-    }
-
-    public void setUploadUser(User uploadUser) {
-        this.uploadUser = uploadUser;
     }
 
     public Timestamp getUploadTime() {
@@ -52,13 +60,7 @@ public class FileItemModle {
         this.filePath = filePath;
     }
 
-    public ModuleItem getModuleItem() {
-        return moduleItem;
-    }
 
-    public void setModuleItem(ModuleItem moduleItem) {
-        this.moduleItem = moduleItem;
-    }
 
 
 }

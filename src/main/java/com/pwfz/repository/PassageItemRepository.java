@@ -10,8 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 /*@Transactional*/
 public interface PassageItemRepository extends JpaRepository<PassageItem,Integer> {
-    @Query("select p from PassageItem p where p.id=:id")
-    PassageItem findPassageItemById(@Param("id") int id);
+
+    PassageItem findPassageItemByUserId( int userid);
 
 
 

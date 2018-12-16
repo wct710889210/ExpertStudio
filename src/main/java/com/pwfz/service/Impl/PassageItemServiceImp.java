@@ -17,19 +17,16 @@ public class PassageItemServiceImp implements PassageItemService {
     @Override
     public PassageItemModule findpassage(int id) {
         PassageItemModule passageItemModule=new PassageItemModule();
-        PassageItem passageItem=passageItemRepository.findPassageItemById(id);
+        PassageItem passageItem=passageItemRepository.findPassageItemByUserId(id);
         BeanUtils.copyProperties(passageItem,passageItemModule);
         return passageItemModule;
     }
 
     @Override
-    public int updatepassage(String content, int userid) {
+    public int updatepassage(PassageItemModule passageItemModule) {
         /*int result=passageItemRepository.updatePassageItem(content,userid);
         return result;*/
-        PassageItemModule passageItemModule=new PassageItemModule();
         PassageItem passageItem=new PassageItem();
-        passageItemModule.setContent(content);
-        passageItemModule.setUserId(userid);
         BeanUtils.copyProperties(passageItemModule,passageItem);
         passageItemRepository.save(passageItem);
         return 1;

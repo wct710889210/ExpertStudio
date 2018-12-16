@@ -9,7 +9,7 @@ import java.util.List;
 
 @Service
 public interface FileItemService {
-    public List<FileItemModle> selectfile(ModuleItem moduleItem);
+    public List<FileItemModle> selectfile(int id);
   /*  public String addfile(FileItemModle fileItemModle,int userid);*/
     int savefileitem(FileItemModle fileItemModle);
     int deletefile(FileItem fileItem);

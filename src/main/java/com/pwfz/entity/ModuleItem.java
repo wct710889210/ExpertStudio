@@ -1,5 +1,6 @@
 package com.pwfz.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.pwfz.enumeration.ModuleType;
 import javax.persistence.*;
 
