@@ -26,9 +26,8 @@ public class PassageItemController {
 
     @RequestMapping("get")
     @ResponseBody
-    public List<PassageItemModule> select(/*int userId*/)
+    public List<PassageItemModule> select(int userId)
     {
-        int userId=1;
         List<PassageItemModule> passageItemModules= passageItemService.findpassage(userId);
         return passageItemModules;
     }
@@ -63,6 +62,14 @@ public class PassageItemController {
             return json;
         }
 
+    }
+
+    @RequestMapping("delete")
+    @ResponseBody
+    public String deletefile(int id)
+    {
+        passageItemService.deletefile(id);
+        return "success";
     }
 
 

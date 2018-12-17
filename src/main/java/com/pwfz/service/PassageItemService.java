@@ -9,4 +9,5 @@ import java.util.List;
 public interface PassageItemService {
     List<PassageItemModule> findpassage(int id);
     void updatepassage(PassageItemModule passageItemModule);
+    void deletefile(int id);
 }

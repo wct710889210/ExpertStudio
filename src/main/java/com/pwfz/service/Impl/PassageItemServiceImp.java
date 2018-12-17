@@ -37,4 +37,9 @@ public class PassageItemServiceImp implements PassageItemService {
         passageItemRepository.save(passageItem);
 
     }
+
+    @Override
+    public void deletefile(int id) {
+        passageItemRepository.delete(id);
+    }
 }
