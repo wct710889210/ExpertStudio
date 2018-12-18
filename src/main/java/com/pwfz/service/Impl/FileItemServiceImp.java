@@ -4,6 +4,8 @@ import com.pwfz.entity.FileItem;
 import com.pwfz.entity.ModuleItem;
 import com.pwfz.model.FileItemModle;
 import com.pwfz.repository.FileItemRepository;
+import com.pwfz.repository.ModuleRepository;
+import com.pwfz.repository.UserRepository;
 import com.pwfz.service.FileItemService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,10 @@ public class FileItemServiceImp implements FileItemService {
     @Autowired
     FileItemRepository fileItemRepository;
 
+    @Autowired
+    ModuleRepository moduleRepository;
+    @Autowired
+    UserRepository userRepository;
     public List<FileItemModle> selectfile(int moduleId) {
         List<FileItem> fileItems = fileItemRepository.findAllFileItem(moduleId);
         List<FileItemModle> fileItemModles = new ArrayList<>();
@@ -33,6 +39,8 @@ public class FileItemServiceImp implements FileItemService {
     public int savefileitem(FileItemModle fileItemModle) {
         FileItem fileItem = new FileItem();
         BeanUtils.copyProperties(fileItemModle,fileItem);
+        fileItem.setModuleItem(moduleRepository.findOne(fileItemModle.getModelid()));
+        fileItem.setUploadUser(userRepository.findOne(fileItemModle.getUserId()));
         fileItemRepository.save(fileItem);
 
         return 0;

@@ -15,4 +15,5 @@ public interface UserRepository extends JpaRepository<User,Integer>,UserReposito
     @Query("select module from User user join user.moduleItems module where user.id = :id")
     List<ModuleItem> findAllModuleById(@Param("id")int id);
 
+
 }

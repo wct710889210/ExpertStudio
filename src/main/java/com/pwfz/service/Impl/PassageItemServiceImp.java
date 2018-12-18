@@ -2,6 +2,7 @@ package com.pwfz.service.Impl;
 
 import com.pwfz.entity.PassageItem;
 import com.pwfz.model.PassageItemModule;
+import com.pwfz.repository.ModuleRepository;
 import com.pwfz.repository.PassageItemRepository;
 import com.pwfz.service.PassageItemService;
 import org.springframework.beans.BeanUtils;
@@ -15,6 +16,8 @@ import java.util.List;
 public class PassageItemServiceImp implements PassageItemService {
     @Autowired
     PassageItemRepository passageItemRepository;
+    @Autowired
+    ModuleRepository moduleRepository;
 
 
     @Override
@@ -34,6 +37,7 @@ public class PassageItemServiceImp implements PassageItemService {
     public void updatepassage(PassageItemModule passageItemModule) {
         PassageItem passageItem=new PassageItem();
         BeanUtils.copyProperties(passageItemModule,passageItem);
+        passageItem.setModuleItem(moduleRepository.findOne(passageItemModule.getModelId()));
         passageItemRepository.save(passageItem);
 
     }

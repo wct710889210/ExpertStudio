@@ -15,4 +15,5 @@ public interface ModuleRepository extends JpaRepository<ModuleItem,Integer> {
             " or m.type=com.pwfz.enumeration.ModuleType.PASAGELIST" +
             " or m.type=com.pwfz.enumeration.ModuleType.SINGLEPASAGE")
     List<ModuleItem> getAccessible();
+
 }
