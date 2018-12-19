@@ -72,6 +72,14 @@ public class PassageItemController {
         return "success";
     }
 
+    @RequestMapping("top")
+    @ResponseBody
+    public String toppassage(int id,String order)
+    {
+        passageItemService.toppassage(id, order);
+        return "success";
+    }
+
 
 
 }

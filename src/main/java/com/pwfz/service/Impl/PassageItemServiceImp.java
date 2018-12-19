@@ -46,4 +46,18 @@ public class PassageItemServiceImp implements PassageItemService {
     public void deletefile(int id) {
         passageItemRepository.delete(id);
     }
+
+    @Override
+    public void toppassage(int id,String order) {
+        PassageItem passageItem=passageItemRepository.findOne(id);
+        if(order.equals("true"))
+        {
+            passageItem.setTop(1);
+        }
+        else{
+            passageItem.setTop(0);
+        }
+        passageItemRepository.save(passageItem);
+
+    }
 }

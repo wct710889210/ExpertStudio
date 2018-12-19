@@ -28,7 +28,7 @@ public class FileItemController {
     @Autowired
     Producename producename;
 
-    @RequestMapping("select")
+    @RequestMapping("getList")
     @ResponseBody
     public List<FileItemModle> findallfile(int moduleId)
     {
@@ -36,7 +36,7 @@ public class FileItemController {
         return fileItemService.selectfile(moduleId);
     }
 
-    @RequestMapping("savefile")
+    @RequestMapping("upload")
     @ResponseBody
     public Json savefile(HttpServletRequest request, MultipartFile files,FileItemModle fileItemModle)
     {
@@ -69,7 +69,7 @@ public class FileItemController {
 
     }
 
-    @RequestMapping("deletefile")
+    @RequestMapping("delete")
     @ResponseBody
     public String deletefile(FileItemModle fileItemModle)
     {

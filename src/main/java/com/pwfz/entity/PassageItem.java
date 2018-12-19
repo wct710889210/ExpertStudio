@@ -15,6 +15,7 @@ public class PassageItem {
     private Timestamp releseTime;
     private String content;
     private String titlePhotoPath;
+    private int top;
 
     @Id
     @Column(name = "id")
@@ -26,6 +27,15 @@ public class PassageItem {
         this.id = id;
     }
 
+    @Basic
+    @Column(name = "top")
+    public int getTop() {
+        return top;
+    }
+
+    public void setTop(int top) {
+        this.top = top;
+    }
     @Basic
     @Column(name = "title")
     public String getTitle() {
