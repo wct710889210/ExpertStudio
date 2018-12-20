@@ -11,7 +11,7 @@ public class FileItemModle {
     private Timestamp uploadTime;
     private String fileName;
     private String filePath;
-    private int modelid;
+    private int modelId;
     public int getUserId() {
         return userId;
     }
@@ -21,11 +21,11 @@ public class FileItemModle {
     }
 
     public Integer getModelid() {
-        return modelid;
+        return modelId;
     }
 
-    public void setModelid(int modelid) {
-        this.modelid = modelid;
+    public void setModelid(int modelId) {
+        this.modelId = modelId;
     }
 
     public int getId() {
