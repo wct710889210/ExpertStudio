@@ -54,6 +54,19 @@ public class FileItemServiceImp implements FileItemService {
         return 0;
     }
 
+    public List<FileItemModle> findfile(int userId)
+    {
+        List<FileItem> fileItems = fileItemRepository.findsomeFileItem(userId);
+        List<FileItemModle> fileItemModles = new ArrayList<>();
+        for(FileItem fileItem:fileItems)
+        {
+            FileItemModle fileItemModle=new FileItemModle();
+            BeanUtils.copyProperties(fileItem,fileItemModle);
+            fileItemModles.add(fileItemModle);
+        }
+        return fileItemModles;
+    }
+
    /* @Override
     public String addfile(FileItemModle fileItemModle,int userid) {
         FileItem fileItem=new FileItem();

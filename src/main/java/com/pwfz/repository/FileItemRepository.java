@@ -16,6 +16,9 @@ public interface FileItemRepository extends JpaRepository<FileItem,Integer> {
 
     FileItem findFileItemById(int id);
 
+    @Query("select f from FileItem f where f.uploadUser.id=:userId ")
+    List<FileItem> findsomeFileItem(@Param("userId") int userId);
+
     /*@Query("update FileItem f set FileItem =:fileitem where f.uploadUser.id=:userid")
     void addfile(@Param("fileitem") FileItem fileItem, @Param("userid")int userid);*/
 

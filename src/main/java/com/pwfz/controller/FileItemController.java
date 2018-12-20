@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Controller
@@ -41,6 +42,8 @@ public class FileItemController {
     public Json savefile(HttpServletRequest request, MultipartFile files,FileItemModle fileItemModle)
     {
         Json json = new Json();
+        Timestamp timestamp=new Timestamp(System.currentTimeMillis());
+        fileItemModle.setUploadTime(timestamp);
         String rootPath = new File(request.getServletContext().getRealPath("")).getParentFile().getAbsolutePath();
         //如果父目录不存在，则创建父目录
         File parent  = new File(rootPath+File.separator+"uploadFiles"+File.separator+"file");
@@ -75,6 +78,13 @@ public class FileItemController {
     {
         fileItemService.deletefile(fileItemModle);
         return "success";
+    }
+
+    @RequestMapping("select")
+    @ResponseBody
+    public List<FileItemModle> findfile(int userId)
+    {
+        return fileItemService.findfile(userId);
     }
 
 

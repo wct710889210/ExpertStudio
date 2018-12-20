@@ -12,7 +12,7 @@ public class PassageItem {
     private String title;
     private int userId;
     private ModuleItem moduleItem;
-    private Timestamp releseTime;
+    private Timestamp releaseTime;
     private String content;
     private String titlePhotoPath;
     private int top;
@@ -70,11 +70,11 @@ public class PassageItem {
     @Basic
     @Column(name = "relese_time")
     public Timestamp getReleseTime() {
-        return releseTime;
+        return releaseTime;
     }
 
-    public void setReleseTime(Timestamp releseTime) {
-        this.releseTime = releseTime;
+    public void setReleseTime(Timestamp releaseTime) {
+        this.releaseTime = releaseTime;
     }
 
     @Basic

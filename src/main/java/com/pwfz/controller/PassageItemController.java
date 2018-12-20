@@ -14,6 +14,8 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -24,7 +26,7 @@ public class PassageItemController {
     @Autowired
     Producename producename;
 
-    @RequestMapping("get")
+    @RequestMapping("getList")
     @ResponseBody
     public List<PassageItemModule> select(int userId)
     {
@@ -37,6 +39,8 @@ public class PassageItemController {
     public Json updatepassage(HttpServletRequest request, MultipartFile passagephoto,PassageItemModule passageItemModule)
     {
         Json json = new Json();
+        Timestamp timestamp=new Timestamp(System.currentTimeMillis());
+        passageItemModule.setReleseTime(timestamp);
         String rootPath = new File(request.getServletContext().getRealPath("")).getParentFile().getAbsolutePath();
         //如果父目录不存在，则创建父目录
         File parent  = new File(rootPath+File.separator+"uploadpassage"+File.separator+"passagephoto");

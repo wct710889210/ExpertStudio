@@ -13,4 +13,5 @@ public interface FileItemService {
   /*  public String addfile(FileItemModle fileItemModle,int userid);*/
     int savefileitem(FileItemModle fileItemModle);
     int deletefile(FileItemModle fileItem);
+    List<FileItemModle> findfile(int userId);
 }
