@@ -5,8 +5,10 @@ import com.pwfz.model.Json;
 import com.pwfz.model.PassageItemModule;
 import com.pwfz.service.PassageItemService;
 import com.pwfz.service.Producename;
+import com.pwfz.service.UploadfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -18,6 +20,7 @@ import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
+@CrossOrigin(origins = "*", maxAge = 3600)
 @Controller
 @RequestMapping("/passage")
 public class PassageItemController {
@@ -25,6 +28,16 @@ public class PassageItemController {
     PassageItemService passageItemService;
     @Autowired
     Producename producename;
+    @Autowired
+    UploadfileService uploadfileService;
+
+    @RequestMapping("getListbyModel")
+    @ResponseBody
+    public List<PassageItemModule> find(int modelId)
+    {
+        List<PassageItemModule> lists=passageItemService.selectpassage(modelId);
+        return lists;
+    }
 
     @RequestMapping("getList")
     @ResponseBody
@@ -36,25 +49,14 @@ public class PassageItemController {
 
     @RequestMapping("upload")
     @ResponseBody
-    public Json updatepassage(HttpServletRequest request, MultipartFile passagephoto,PassageItemModule passageItemModule)
-    {
+    public Json updatepassage(HttpServletRequest request, MultipartFile passagephoto,PassageItemModule passageItemModule) {
+        String packagename = "webapp/passagephoto";
         Json json = new Json();
-        Timestamp timestamp=new Timestamp(System.currentTimeMillis());
-        passageItemModule.setReleseTime(timestamp);
-        String rootPath = new File(request.getServletContext().getRealPath("")).getParentFile().getAbsolutePath();
-        //如果父目录不存在，则创建父目录
-        File parent  = new File(rootPath+File.separator+"uploadpassage"+File.separator+"passagephoto");
-        if(!parent.exists())
-            parent.mkdirs();
-
-        String fileName = passagephoto.getOriginalFilename();
-        String randomFileName = producename.producename()+fileName.substring(fileName.lastIndexOf(".")+1);
-        String path = File.separator+"uploadpassage"+File.separator+"passagephoto"+File.separator+randomFileName;
-        File file = new File(rootPath+path);
-        System.out.println(file.getAbsolutePath());
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        passageItemModule.setReleaseTime(timestamp);
         try {
-            passagephoto.transferTo(file);
-            passageItemModule.setTitlePhotoPath("/uploadpassage/passagephoto/"+randomFileName);
+            String randomFileName = uploadfileService.sendfile(passagephoto, packagename, request);
+            passageItemModule.setTitlePhotoPath("/"+packagename+"/" + randomFileName);
             passageItemService.updatepassage(passageItemModule);
             json.setSuccess(true);
             json.setMsg("添加成功");
@@ -62,11 +64,11 @@ public class PassageItemController {
         } catch (IOException e) {
             e.printStackTrace();
             json.setSuccess(false);
-        }finally {
+        } finally {
             return json;
         }
-
     }
+
 
     @RequestMapping("delete")
     @ResponseBody

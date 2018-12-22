@@ -69,11 +69,11 @@ public class PassageItem {
 
     @Basic
     @Column(name = "relese_time")
-    public Timestamp getReleseTime() {
+    public Timestamp getReleaseTime() {
         return releaseTime;
     }
 
-    public void setReleseTime(Timestamp releaseTime) {
+    public void setReleaseTime(Timestamp releaseTime) {
         this.releaseTime = releaseTime;
     }
 

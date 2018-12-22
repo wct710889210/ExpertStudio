@@ -9,7 +9,7 @@ public class PassageItemModule {
     private String title;
     private int userId;
     private int modelId;
-    private Timestamp releseTime;
+    private Timestamp releaseTime;
     private String content;
     private String titlePhotoPath;
 
@@ -45,12 +45,12 @@ public class PassageItemModule {
     }
 
 
-    public Timestamp getReleseTime() {
-        return releseTime;
+    public Timestamp getReleaseTime() {
+        return releaseTime;
     }
 
-    public void setReleseTime(Timestamp releseTime) {
-        this.releseTime = releseTime;
+    public void setReleaseTime(Timestamp releaseTime) {
+        this.releaseTime = releaseTime;
     }
 
     public String getContent() {

@@ -16,6 +16,9 @@ public interface PassageItemRepository extends JpaRepository<PassageItem,Integer
     @Query("select f from PassageItem f where f.userId = :userid ")
     List<PassageItem> findAllByUserId(@Param("userid") int userid);
 
+    @Query("select p from PassageItem p where p.moduleItem.id=:modleId")
+    List<PassageItem> findpassageByModleId(@Param("modleId") int modleId);
+
 
 
     /*@Modifying

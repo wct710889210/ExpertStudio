@@ -60,4 +60,17 @@ public class PassageItemServiceImp implements PassageItemService {
         passageItemRepository.save(passageItem);
 
     }
+
+    @Override
+    public List<PassageItemModule> selectpassage(int modelId) {
+        List<PassageItem> passageItems=passageItemRepository.findpassageByModleId(modelId);
+        List<PassageItemModule> passageItemModules=new ArrayList<>();
+        for(PassageItem passageItem:passageItems)
+        {
+            PassageItemModule passageItemModule=new PassageItemModule();
+            BeanUtils.copyProperties(passageItem,passageItemModule);
+            passageItemModules.add(passageItemModule);
+        }
+        return passageItemModules;
+    }
 }

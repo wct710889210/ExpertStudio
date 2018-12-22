@@ -8,8 +8,10 @@ import com.pwfz.model.Json;
 import com.pwfz.repository.FileItemRepository;
 import com.pwfz.service.FileItemService;
 import com.pwfz.service.Producename;
+import com.pwfz.service.UploadfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,6 +22,7 @@ import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.List;
 
+@CrossOrigin(origins = "*", maxAge = 3600)
 @Controller
 @RequestMapping("/file")
 public class FileItemController {
@@ -28,6 +31,8 @@ public class FileItemController {
     FileItemService fileItemService;
     @Autowired
     Producename producename;
+    @Autowired
+    UploadfileService uploadfileService;
 
     @RequestMapping("getList")
     @ResponseBody
@@ -44,20 +49,10 @@ public class FileItemController {
         Json json = new Json();
         Timestamp timestamp=new Timestamp(System.currentTimeMillis());
         fileItemModle.setUploadTime(timestamp);
-        String rootPath = new File(request.getServletContext().getRealPath("")).getParentFile().getAbsolutePath();
-        //如果父目录不存在，则创建父目录
-        File parent  = new File(rootPath+File.separator+"uploadFiles"+File.separator+"file");
-        if(!parent.exists())
-            parent.mkdirs();
-
-        String fileName = files.getOriginalFilename();
-        String randomFileName = producename.producename()+fileName.substring(fileName.lastIndexOf(".")+1);
-        String path = File.separator+"uploadFiles"+File.separator+"file"+File.separator+randomFileName;
-        File file = new File(rootPath+path);
-        System.out.println(file.getAbsolutePath());
+        String packagename="webapp/File";
         try {
-            files.transferTo(file);
-            fileItemModle.setFilePath("/uploadFiles/file/"+randomFileName);
+            String randomFileName = uploadfileService.sendfile(files, packagename, request);
+            fileItemModle.setFilePath(packagename+randomFileName);
             fileItemService.savefileitem(fileItemModle);
             json.setSuccess(true);
             json.setMsg("添加成功");

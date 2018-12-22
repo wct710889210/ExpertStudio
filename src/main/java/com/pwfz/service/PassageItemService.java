@@ -11,4 +11,5 @@ public interface PassageItemService {
     void updatepassage(PassageItemModule passageItemModule);
     void deletefile(int id);
     void toppassage(int id,String order);
+    List<PassageItemModule> selectpassage(int modelId);
 }
