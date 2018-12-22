@@ -12,6 +12,14 @@ public class FileItemModle {
     private String fileName;
     private String filePath;
     private int modelId;
+    public int getModelId() {
+        return modelId;
+    }
+
+    public void setModelId(int modelId) {
+        this.modelId = modelId;
+    }
+
     public int getUserId() {
         return userId;
     }
@@ -20,13 +28,6 @@ public class FileItemModle {
         this.userId = userId;
     }
 
-    public Integer getModelid() {
-        return modelId;
-    }
-
-    public void setModelid(int modelId) {
-        this.modelId = modelId;
-    }
 
     public int getId() {
         return id;

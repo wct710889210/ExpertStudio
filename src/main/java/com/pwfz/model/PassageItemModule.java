@@ -13,6 +13,16 @@ public class PassageItemModule {
     private String content;
     private String titlePhotoPath;
 
+
+
+    private int top;
+    public int getTop() {
+        return top;
+    }
+
+    public void setTop(int top) {
+        this.top = top;
+    }
     public int getId() {
         return id;
     }

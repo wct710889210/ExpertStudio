@@ -52,21 +52,25 @@ public class PassageItemController {
     public Json updatepassage(HttpServletRequest request, MultipartFile passagephoto,PassageItemModule passageItemModule) {
         String packagename = "webapp/passagephoto";
         Json json = new Json();
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        passageItemModule.setReleaseTime(timestamp);
-        try {
-            String randomFileName = uploadfileService.sendfile(passagephoto, packagename, request);
-            passageItemModule.setTitlePhotoPath("/"+packagename+"/" + randomFileName);
-            passageItemService.updatepassage(passageItemModule);
-            json.setSuccess(true);
-            json.setMsg("添加成功");
-            json.setObj(passageItemModule);
-        } catch (IOException e) {
-            e.printStackTrace();
-            json.setSuccess(false);
-        } finally {
-            return json;
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());passageItemModule.setReleaseTime(timestamp);
+        //文件判空，如果提交的是空，会产生null
+        if (passagephoto!=null&&passagephoto.getOriginalFilename()!=null) {
+            try {
+                String randomFileName = uploadfileService.sendfile(passagephoto, packagename, request);
+                passageItemModule.setTitlePhotoPath("/"+packagename+"/" + randomFileName);
+                json.setSuccess(true);
+                json.setMsg("添加成功");
+                json.setObj(passageItemModule);
+            } catch (IOException e) {
+                e.printStackTrace();
+                json.setSuccess(false);
+            }
+        }else{
+            System.out.println("don't have anything!");
         }
+        passageItemService.updatepassage(passageItemModule);
+
+        return json;
     }
 
 

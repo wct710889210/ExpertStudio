@@ -11,7 +11,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface FileItemRepository extends JpaRepository<FileItem,Integer> {
-    @Query("select f from FileItem f where f.moduleItem.id =:Id ")
+    @Query("select f from FileItem f where f.moduleItem.id = :Id ")
     List<FileItem> findAllFileItem(@Param("Id") int id);
 
     FileItem findFileItemById(int id);

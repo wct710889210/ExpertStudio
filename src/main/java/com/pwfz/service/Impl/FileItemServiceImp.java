@@ -39,7 +39,7 @@ public class FileItemServiceImp implements FileItemService {
     public int savefileitem(FileItemModle fileItemModle) {
         FileItem fileItem = new FileItem();
         BeanUtils.copyProperties(fileItemModle,fileItem);
-        fileItem.setModuleItem(moduleRepository.findOne(fileItemModle.getModelid()));
+        fileItem.setModuleItem(moduleRepository.findOne(fileItemModle.getModelId()));
         fileItem.setUploadUser(userRepository.findOne(fileItemModle.getUserId()));
         fileItemRepository.save(fileItem);
 

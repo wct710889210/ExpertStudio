@@ -50,19 +50,23 @@ public class FileItemController {
         Timestamp timestamp=new Timestamp(System.currentTimeMillis());
         fileItemModle.setUploadTime(timestamp);
         String packagename="webapp/File";
-        try {
-            String randomFileName = uploadfileService.sendfile(files, packagename, request);
-            fileItemModle.setFilePath(packagename+randomFileName);
-            fileItemService.savefileitem(fileItemModle);
-            json.setSuccess(true);
-            json.setMsg("添加成功");
-            json.setObj(fileItemModle);
-        } catch (IOException e) {
-            e.printStackTrace();
-            json.setSuccess(false);
-        }finally {
-            return json;
+        if (files!=null&&files.getOriginalFilename()!=null) {
+            try {
+                String randomFileName = uploadfileService.sendfile(files, packagename, request);
+                fileItemModle.setFilePath(packagename+randomFileName);
+
+                json.setSuccess(true);
+                json.setMsg("添加成功");
+                json.setObj(fileItemModle);
+            } catch (IOException e) {
+                e.printStackTrace();
+                json.setSuccess(false);
+            }
+        }else{
+            System.out.println("don't have anything!");
         }
+        fileItemService.savefileitem(fileItemModle);
+        return json;
 
 
     }
