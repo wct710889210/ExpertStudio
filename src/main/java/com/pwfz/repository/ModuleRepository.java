@@ -1,13 +1,14 @@
 package com.pwfz.repository;
 
 import com.pwfz.entity.ModuleItem;
+import com.pwfz.repository.custom.ModuleRepsitoryCustom;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface ModuleRepository extends JpaRepository<ModuleItem,Integer> {
+public interface ModuleRepository extends JpaRepository<ModuleItem,Integer>,ModuleRepsitoryCustom {
     @Query("select m from ModuleItem m where m.user.id = :userId")
     List<ModuleItem> findByUser(@Param("userId") int userId);
 

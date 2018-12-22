@@ -1,4 +1,4 @@
-package com.pwfz.service.impl;
+package com.pwfz.service.Impl;
 
 import com.pwfz.service.NaviItemService;
 

@@ -9,11 +9,13 @@ import com.pwfz.service.FileItemService;
 import com.pwfz.service.Producename;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
+@CrossOrigin(origins = "*")
 @Controller
 @RequestMapping("/file")
 public class FileItemController {
@@ -25,17 +27,17 @@ public class FileItemController {
     @Autowired
     Producename producename;
 
-    @RequestMapping("select")
-    @ResponseBody
-    public List<FileItemModle> findallfile()
-    {
-        ModuleItem moduleItem=new ModuleItem();
-        moduleItem.setId(1);
-        moduleItem.setType("1");
-        int u=1;
-
-        return fileItemService.selectfile(moduleItem);
-    }
+//    @RequestMapping("select")
+//    @ResponseBody
+//    public List<FileItemModle> findallfile()
+//    {
+//        ModuleItem moduleItem=new ModuleItem();
+//        moduleItem.setId(1);
+//        moduleItem.setType("1");
+//        int u=1;
+//
+//        return fileItemService.selectfile(moduleItem);
+//    }
 
     @RequestMapping("savefile")
     @ResponseBody

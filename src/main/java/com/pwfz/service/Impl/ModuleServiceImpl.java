@@ -1,4 +1,4 @@
-package com.pwfz.service.impl;
+package com.pwfz.service.Impl;
 
 import com.pwfz.entity.ModuleItem;
 import com.pwfz.entity.User;
@@ -34,9 +34,10 @@ public class ModuleServiceImpl implements ModuleService {
     }
 
     @Override
-    public void add(ModuleModel model) {
+    public int add(ModuleModel model) {
         ModuleItem item = modelToEntity(model);
-        moduleRepository.save(item);
+        ModuleItem result = moduleRepository.save(item);
+        return result.getId();
     }
 
     @Override
