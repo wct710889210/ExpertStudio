@@ -1034,6 +1034,7 @@
     <column id="256" parent="234" name="module_id">
       <Position>2</Position>
       <DataType>int(11) unsigned|0s</DataType>
+      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="257" parent="234" name="description">
@@ -1045,12 +1046,14 @@
       <Position>4</Position>
       <Comment>图片所处序列位置</Comment>
       <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="259" parent="234" name="sequence">
       <Position>5</Position>
       <Comment>顺序</Comment>
       <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="260" parent="234" name="link_path">
@@ -1073,6 +1076,7 @@
     <column id="263" parent="235" name="module_id">
       <Position>2</Position>
       <DataType>int(11) unsigned|0s</DataType>
+      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="264" parent="235" name="father_id">
@@ -1090,6 +1094,7 @@
       <Position>5</Position>
       <Comment>导航栏项的名字</Comment>
       <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="267" parent="235" name="sequence">
@@ -1170,11 +1175,13 @@
     <column id="281" parent="237" name="photo_path">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="282" parent="237" name="user_id">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <key id="283" parent="237" name="PRIMARY">
@@ -1214,39 +1221,47 @@
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="290" parent="238" name="PRIMARY">
+    <column id="290" parent="238" name="module_id">
+      <Position>7</Position>
+      <DataType>int(11)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="291" parent="238" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="291" parent="239" name="id">
+    <column id="292" parent="239" name="id">
       <Position>1</Position>
       <DataType>int(10) unsigned|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="292" parent="239" name="username">
+    <column id="293" parent="239" name="username">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="293" parent="239" name="password">
+    <column id="294" parent="239" name="password">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="294" parent="239" name="web_path">
+    <column id="295" parent="239" name="web_path">
       <Position>4</Position>
       <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="295" parent="239" name="email">
+    <column id="296" parent="239" name="email">
       <Position>5</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="296" parent="239" name="PRIMARY">
+    <key id="297" parent="239" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
