@@ -51,8 +51,8 @@ public class SinglepassageController {
 
     @RequestMapping("select")
     @ResponseBody
-    public SinglePassageModel selectsinglepassage(int userId)
+    public SinglePassageModel selectsinglepassage(int moduleId)
     {
-        return singlePassageService.findsinglepassage(userId);
+        return singlePassageService.findsinglepassage(moduleId);
     }
 }

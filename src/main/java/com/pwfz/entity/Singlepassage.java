@@ -11,7 +11,7 @@ public class Singlepassage {
     private String description;
     private String content;
     private String photopath;
-    private int userId;
+    private ModuleItem moduleItem;
 
     @Id
     @Column(name = "id")
@@ -23,15 +23,16 @@ public class Singlepassage {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "userId")
-    public int getUserId() {
-        return userId;
+    @ManyToOne
+    @JoinColumn(name = "module_id")
+    public ModuleItem getModuleItem() {
+        return moduleItem;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setModuleItem(ModuleItem moduleItem) {
+        this.moduleItem = moduleItem;
     }
+
 
     @Basic
     @Column(name = "title")
