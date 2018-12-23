@@ -28,4 +28,13 @@ public class PhotoModel {
     public void setUserId(int userId) {
         this.userId = userId;
     }
+
+    @Override
+    public String toString() {
+        return "PhotoModel{" +
+                "id=" + id +
+                ", photoPath='" + photoPath + '\'' +
+                ", userId=" + userId +
+                '}';
+    }
 }

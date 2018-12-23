@@ -10,6 +10,7 @@ public class User {
     private int id;
     private String username;
     private String password;
+    private String name;
     private Collection<ModuleItem> moduleItems;
 
     @Id
@@ -40,7 +41,16 @@ public class User {
         this.password = password;
     }
 
-/*    @JsonBackReference*/
+    @Column(name = "name")
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @JsonBackReference
     @OneToMany(
             fetch = FetchType.EAGER,
             mappedBy = "user"
@@ -63,7 +73,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "UserModel{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +

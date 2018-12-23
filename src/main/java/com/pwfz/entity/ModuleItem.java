@@ -3,6 +3,7 @@ package com.pwfz.entity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.pwfz.enumeration.ModuleType;
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "module_item", schema = "j2ee_design")
@@ -13,9 +14,11 @@ public class ModuleItem {
     private boolean active;
     private String style;
     private User user;
+    private List<MultiPhotoItem> multiPhotoItems;
 
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getId() {
         return id;
     }
@@ -35,7 +38,6 @@ public class ModuleItem {
         this.type = type;
     }
 
- /*   @JsonBackReference*/
     @ManyToOne
     @JoinColumn(name = "user_id")
     public User getUser() {
@@ -71,5 +73,16 @@ public class ModuleItem {
 
     public void setStyle(String style) {
         this.style = style;
+    }
+
+    @OneToMany(cascade = {CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+    @JoinColumn(name = "module_id")
+    @OrderColumn(name = "sequence")
+    public List<MultiPhotoItem> getMultiPhotoItems() {
+        return multiPhotoItems;
+    }
+
+    public void setMultiPhotoItems(List<MultiPhotoItem> multiPhotoItems) {
+        this.multiPhotoItems = multiPhotoItems;
     }
 }

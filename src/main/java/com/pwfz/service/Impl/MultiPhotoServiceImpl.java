@@ -1,5 +1,6 @@
 package com.pwfz.service.Impl;
 
+import com.pwfz.entity.ModuleItem;
 import com.pwfz.entity.MultiPhotoItem;
 import com.pwfz.model.MultiPhotoModel;
 import com.pwfz.repository.ModuleRepository;
@@ -29,23 +30,29 @@ public class MultiPhotoServiceImpl implements MultiPhotoService {
     }
 
     @Override
-    public void save(List<MultiPhotoModel> models) {
+    public void save(List<MultiPhotoModel> models,int moduleId) {
         int count = 0;
         List<MultiPhotoItem> items = new ArrayList<>();
+        ModuleItem moduleItem = moduleRepository.findOne(moduleId);
         for (MultiPhotoModel model:models){
             MultiPhotoItem item = new MultiPhotoItem();
             BeanUtils.copyProperties(model,item);
-            item.setModuleItem(moduleRepository.findOne(model.getId()));
-            item.setSequence(count++);
+//            item.setModuleItem(moduleItem);
+//            item.setSequence(count++);
             items.add(item);
         }
-        multiPhotoRepository.save(items);
+//        输出集合
+        for(MultiPhotoItem i:items){
+            System.out.println(i);
+        }
+        moduleItem.setMultiPhotoItems(items);
+        moduleRepository.saveForMultiPhotos(moduleItem);
     }
 
     private MultiPhotoModel entityToModel(MultiPhotoItem item){
         MultiPhotoModel model = new MultiPhotoModel();
         BeanUtils.copyProperties(item,model);
-        model.setModuleId(item.getModuleItem().getId());
+//        model.setModuleId(item.getModuleItem().getId());
         return model;
     }
 }
