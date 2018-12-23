@@ -7,4 +7,5 @@ import java.util.List;
 public interface PhotoService {
     void add(PhotoModel model);
     List<PhotoModel> getByUser(int userId);
+    void delete(int photoId);
 }

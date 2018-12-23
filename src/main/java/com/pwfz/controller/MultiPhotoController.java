@@ -4,12 +4,14 @@ import com.pwfz.model.Json;
 import com.pwfz.model.MultiPhotoModel;
 import com.pwfz.service.MultiPhotoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/multiPhoto")
 public class MultiPhotoController {
@@ -25,11 +27,12 @@ public class MultiPhotoController {
     }
 
     @RequestMapping("save")
-    public Json save(@RequestBody List<MultiPhotoModel> models){
+    public Json save(@RequestBody List<MultiPhotoModel> models,int moduleId){
         Json json = new Json();
-        multiPhotoService.save(models);
+        multiPhotoService.save(models,moduleId);
         json.setSuccess(true);
         json.setMsg("保存成功");
         return json;
     }
+
 }

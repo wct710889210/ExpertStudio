@@ -8,7 +8,8 @@ import javax.persistence.*;
 @Table(name = "multi_photo_item", schema = "j2ee_design")
 public class MultiPhotoItem {
     private int id;
-    private ModuleItem moduleItem;
+//    private ModuleItem moduleItem;
+    private int moduleId;
     private String photoPath;
     private String description;
     private int sequence;
@@ -25,15 +26,24 @@ public class MultiPhotoItem {
         this.id = id;
     }
 
-    @JsonBackReference
-    @ManyToOne
-    @JoinColumn(name = "module_id")
-    public ModuleItem getModuleItem() {
-        return moduleItem;
+//    @JsonBackReference
+//    @ManyToOne
+//    @JoinColumn(name = "module_id")
+//    public ModuleItem getModuleItem() {
+//        return moduleItem;
+//    }
+//
+//    public void setModuleItem(ModuleItem moduleItem) {
+//        this.moduleItem = moduleItem;
+//    }
+
+    @Column(name = "module_id")
+    public int getModuleId() {
+        return moduleId;
     }
 
-    public void setModuleItem(ModuleItem moduleItem) {
-        this.moduleItem = moduleItem;
+    public void setModuleId(int moduleId) {
+        this.moduleId = moduleId;
     }
 
     @Column(name = "photo_path")
@@ -72,4 +82,15 @@ public class MultiPhotoItem {
         this.linkPath = linkPath;
     }
 
+    @Override
+    public String toString() {
+        return "MultiPhotoItem{" +
+                "id=" + id +
+                ", moduleId=" + moduleId +
+                ", photoPath='" + photoPath + '\'' +
+                ", description='" + description + '\'' +
+                ", sequence=" + sequence +
+                ", linkPath='" + linkPath + '\'' +
+                '}';
+    }
 }

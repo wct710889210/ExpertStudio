@@ -8,6 +8,6 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface MultiPhotoRepository extends JpaRepository<MultiPhotoItem,Integer> {
-    @Query("select m from MultiPhotoItem m where m.moduleItem.id = :moduleId order by m.sequence")
+    @Query("select m from MultiPhotoItem m where m.moduleId = :moduleId order by m.sequence")
     List<MultiPhotoItem> getByModuleId(@Param("moduleId") int moduleId);
 }

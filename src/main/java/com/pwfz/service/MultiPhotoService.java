@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface MultiPhotoService {
     List<MultiPhotoModel> get(int moduleId);
-    void save(List<MultiPhotoModel> models);
+    void save(List<MultiPhotoModel> models,int moduleId);
 }

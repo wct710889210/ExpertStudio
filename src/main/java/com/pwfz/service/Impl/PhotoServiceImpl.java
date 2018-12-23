@@ -1,4 +1,4 @@
-package com.pwfz.service.impl;
+package com.pwfz.service.Impl;
 
 import com.pwfz.entity.Photo;
 import com.pwfz.model.PhotoModel;
@@ -9,6 +9,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,5 +39,12 @@ public class PhotoServiceImpl implements PhotoService {
             models.add(model);
         }
         return models;
+    }
+
+    @Override
+    public void delete(int photoId) {
+        Photo photo = photoRepository.findOne(photoId);
+        //todo 删除图片
+        photoRepository.delete(photoId);
     }
 }
