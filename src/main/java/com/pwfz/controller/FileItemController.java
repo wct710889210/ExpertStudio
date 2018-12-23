@@ -38,7 +38,6 @@ public class FileItemController {
     @ResponseBody
     public List<FileItemModle> findallfile(int moduleId)
     {
-   /*     int moduleId=1;*/
         return fileItemService.selectfile(moduleId);
     }
 
