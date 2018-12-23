@@ -50,7 +50,7 @@ public class PassageItemController {
     @RequestMapping("upload")
     @ResponseBody
     public Json updatepassage(HttpServletRequest request, MultipartFile passagephoto,PassageItemModule passageItemModule) {
-        String packagename = "webapp/passagephoto";
+        String packagename = "uploadfiles/passagephoto";
         Json json = new Json();
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());passageItemModule.setReleaseTime(timestamp);
         //文件判空，如果提交的是空，会产生null

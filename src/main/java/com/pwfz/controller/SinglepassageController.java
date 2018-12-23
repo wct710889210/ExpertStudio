@@ -28,7 +28,7 @@ public class SinglepassageController {
     @ResponseBody
     public Json updatesinglepassage(HttpServletRequest request, MultipartFile photo, SinglePassageModel singlePassageModel)
     {
-        String packagename = "webapp/singlepassagephoto";
+        String packagename = "uploadfiles/singlepassagephoto";
         Json json = new Json();
         //文件判空，如果提交的是空，会产生null
         if (photo!=null&&photo.getOriginalFilename()!=null) {

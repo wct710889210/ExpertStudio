@@ -48,7 +48,7 @@ public class FileItemController {
         Json json = new Json();
         Timestamp timestamp=new Timestamp(System.currentTimeMillis());
         fileItemModle.setUploadTime(timestamp);
-        String packagename="webapp/File";
+        String packagename="uploadfiles/File";
         if (files!=null&&files.getOriginalFilename()!=null) {
             try {
                 String randomFileName = uploadfileService.sendfile(files, packagename, request);
