@@ -8,17 +8,34 @@ public class PassageItemModule {
     private int id;
     private String title;
     private int userId;
-    private ModuleItem moduleItem;
-    private Timestamp releseTime;
+    private int modelId;
+    private Timestamp releaseTime;
     private String content;
     private String titlePhotoPath;
 
+
+
+    private int top;
+    public int getTop() {
+        return top;
+    }
+
+    public void setTop(int top) {
+        this.top = top;
+    }
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
+    }
+    public int getModelId() {
+        return modelId;
+    }
+
+    public void setModelId(int modelId) {
+        this.modelId = modelId;
     }
 
     public String getTitle() {
@@ -37,20 +54,13 @@ public class PassageItemModule {
         this.userId = userId;
     }
 
-    public ModuleItem getModuleItem() {
-        return moduleItem;
+
+    public Timestamp getReleaseTime() {
+        return releaseTime;
     }
 
-    public void setModuleItem(ModuleItem moduleItem) {
-        this.moduleItem = moduleItem;
-    }
-
-    public Timestamp getReleseTime() {
-        return releseTime;
-    }
-
-    public void setReleseTime(Timestamp releseTime) {
-        this.releseTime = releseTime;
+    public void setReleaseTime(Timestamp releaseTime) {
+        this.releaseTime = releaseTime;
     }
 
     public String getContent() {
@@ -68,6 +78,7 @@ public class PassageItemModule {
     public void setTitlePhotoPath(String titlePhotoPath) {
         this.titlePhotoPath = titlePhotoPath;
     }
+
 
 
 }

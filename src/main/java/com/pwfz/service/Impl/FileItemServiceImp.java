@@ -4,6 +4,8 @@ import com.pwfz.entity.FileItem;
 import com.pwfz.entity.ModuleItem;
 import com.pwfz.model.FileItemModle;
 import com.pwfz.repository.FileItemRepository;
+import com.pwfz.repository.ModuleRepository;
+import com.pwfz.repository.UserRepository;
 import com.pwfz.service.FileItemService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,17 +19,15 @@ public class FileItemServiceImp implements FileItemService {
     @Autowired
     FileItemRepository fileItemRepository;
 
-    public List<FileItemModle> selectfile(ModuleItem moduleItem) {
-        List<FileItem> fileItems = fileItemRepository.findAllFileItem(moduleItem);
+    @Autowired
+    ModuleRepository moduleRepository;
+    @Autowired
+    UserRepository userRepository;
+    public List<FileItemModle> selectfile(int moduleId) {
+        List<FileItem> fileItems = fileItemRepository.findAllFileItem(moduleId);
         List<FileItemModle> fileItemModles = new ArrayList<>();
         for (FileItem fileItem : fileItems) {
             FileItemModle fileItemModle = new FileItemModle();
-           /* fileItemModle.setFileName(fileItem.getFileName());
-            fileItemModle.setFilePath(fileItem.getFilePath());
-            fileItemModle.setId(fileItem.getId());
-            fileItemModle.setModuleItem(fileItem.getModuleItem());
-            fileItemModle.setUploadTime(fileItem.getUploadTime());
-            fileItemModle.setUploadUser(fileItem.getUploadUser());*/
             BeanUtils.copyProperties(fileItem,fileItemModle);
             fileItemModles.add(fileItemModle);
         }
@@ -39,15 +39,32 @@ public class FileItemServiceImp implements FileItemService {
     public int savefileitem(FileItemModle fileItemModle) {
         FileItem fileItem = new FileItem();
         BeanUtils.copyProperties(fileItemModle,fileItem);
+        fileItem.setModuleItem(moduleRepository.findOne(fileItemModle.getModelId()));
+        fileItem.setUploadUser(userRepository.findOne(fileItemModle.getUserId()));
         fileItemRepository.save(fileItem);
 
         return 0;
     }
 
     @Override
-    public int deletefile(FileItem fileItem) {
+    public int deletefile(FileItemModle fileItemModle) {
+        FileItem fileItem=new FileItem();
+        BeanUtils.copyProperties(fileItemModle,fileItem);
         fileItemRepository.delete(fileItem);
         return 0;
+    }
+
+    public List<FileItemModle> findfile(int userId)
+    {
+        List<FileItem> fileItems = fileItemRepository.findsomeFileItem(userId);
+        List<FileItemModle> fileItemModles = new ArrayList<>();
+        for(FileItem fileItem:fileItems)
+        {
+            FileItemModle fileItemModle=new FileItemModle();
+            BeanUtils.copyProperties(fileItem,fileItemModle);
+            fileItemModles.add(fileItemModle);
+        }
+        return fileItemModles;
     }
 
    /* @Override

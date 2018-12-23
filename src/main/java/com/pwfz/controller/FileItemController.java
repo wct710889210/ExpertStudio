@@ -4,18 +4,25 @@ import com.pwfz.entity.FileItem;
 import com.pwfz.entity.ModuleItem;
 import com.pwfz.entity.User;
 import com.pwfz.model.FileItemModle;
+import com.pwfz.model.Json;
 import com.pwfz.repository.FileItemRepository;
 import com.pwfz.service.FileItemService;
 import com.pwfz.service.Producename;
+import com.pwfz.service.UploadfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.List;
 
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "*", maxAge = 3600)
 @Controller
 @RequestMapping("/file")
 public class FileItemController {
@@ -23,76 +30,61 @@ public class FileItemController {
     @Autowired
     FileItemService fileItemService;
     @Autowired
-    FileItemRepository fileItemRepository;
-    @Autowired
     Producename producename;
+    @Autowired
+    UploadfileService uploadfileService;
 
-//    @RequestMapping("select")
-//    @ResponseBody
-//    public List<FileItemModle> findallfile()
-//    {
-//        ModuleItem moduleItem=new ModuleItem();
-//        moduleItem.setId(1);
-//        moduleItem.setType("1");
-//        int u=1;
-//
-//        return fileItemService.selectfile(moduleItem);
-//    }
-
-    @RequestMapping("savefile")
+    @RequestMapping("getList")
     @ResponseBody
-    public String savefile()
+    public List<FileItemModle> findallfile(int moduleId)
     {
-        FileItemModle fileItemModle=new FileItemModle();
-        fileItemModle.setFilePath("uzi");
-        fileItemModle.setId(123);
-        fileItemModle.setFileName("fdsfa");
+        return fileItemService.selectfile(moduleId);
+    }
+
+    @RequestMapping("upload")
+    @ResponseBody
+    public Json savefile(HttpServletRequest request, MultipartFile files,FileItemModle fileItemModle)
+    {
+        Json json = new Json();
+        Timestamp timestamp=new Timestamp(System.currentTimeMillis());
+        fileItemModle.setUploadTime(timestamp);
+        String packagename="webapp/File";
+        if (files!=null&&files.getOriginalFilename()!=null) {
+            try {
+                String randomFileName = uploadfileService.sendfile(files, packagename, request);
+                fileItemModle.setFilePath(packagename+randomFileName);
+
+                json.setSuccess(true);
+                json.setMsg("添加成功");
+                json.setObj(fileItemModle);
+            } catch (IOException e) {
+                e.printStackTrace();
+                json.setSuccess(false);
+            }
+        }else{
+            System.out.println("don't have anything!");
+        }
         fileItemService.savefileitem(fileItemModle);
-        return "success";
+        return json;
+
+
     }
 
-    @RequestMapping("deletefile")
+    @RequestMapping("delete")
     @ResponseBody
-    public String deletefile()
+    public String deletefile(FileItemModle fileItemModle)
     {
-        int id=1;
-        User user=new User();
-        user.setId(2);
-        FileItem fileItem=new FileItem();
-        fileItem.setUploadUser(user);
-        fileItemService.deletefile(fileItem);
+        fileItemService.deletefile(fileItemModle);
         return "success";
     }
 
+    @RequestMapping("select")
+    @ResponseBody
+    public List<FileItemModle> findfile(int userId)
+    {
+        return fileItemService.findfile(userId);
+    }
 
-   /* @RequestMapping("addfile")
-    public String addfile(@RequestParam(value="userid",required=false) int userid, HttpServletRequest request) {
-       *//* CommonsMultipartResolver commonsMultipartResolver = new CommonsMultipartResolver(request.getSession().getServletContext());
-        // 设置编码
-        commonsMultipartResolver.setDefaultEncoding("utf-8");
-        if (commonsMultipartResolver.isMultipart(request)) {//有文件上传
-            System.out.println("have photo");
-            MultipartHttpServletRequest fileRequest = (MultipartHttpServletRequest) request;
-            MultipartFile file = fileRequest.getFile("image");
-            if ((!file.isEmpty()) && (!file.getOriginalFilename().equals(""))) {
-                //String path = request.getServletContext().getRealPath("static"+File.separator+"uploadFiles");
-                String path = new File(request.getServletContext().getRealPath("")).getParentFile().getAbsolutePath() + File.separator + "uploadFiles";
-                //send+="+not empty and path:"+path+"\n";
-                String fileName = file.getOriginalFilename();
-                File pFile = new File(path);
-                pFile.setWritable(true, false);
-                if (!pFile.exists()) {
-                    pFile.mkdirs();
-                }
-                String ultiPath = path + File.separator + producename.producename() + fileName.substring(fileName.lastIndexOf(".") + 1);
-*//*
-         *//*   }*//*
-*//*        }*//*
-        System.out.println(userid);
-        FileItemModle fileItemModle=new FileItemModle();
-        fileItemModle.setId(123);
-        fileItemModle.setFilePath("uzi");
-        fileItemService.addfile(fileItemModle,userid);
-        return "success";
-    }*/
+
+
 }

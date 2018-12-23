@@ -3,6 +3,7 @@ package com.pwfz.entity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.util.Date;
 
 @Entity
@@ -10,7 +11,7 @@ import java.util.Date;
 public class FileItem {
     private int id;
     private User uploadUser;
-    private Date uploadTime;
+    private Timestamp uploadTime;
     private String fileName;
     private String filePath;
     private ModuleItem moduleItem;
@@ -25,7 +26,7 @@ public class FileItem {
         this.id = id;
     }
 
-    @JsonBackReference
+/*    @JsonBackReference*/
     @ManyToOne
     @JoinColumn(name = "upload_user_id")
     public User getUploadUser() {
@@ -36,13 +37,13 @@ public class FileItem {
         this.uploadUser = uploadUser;
     }
 
+    @Basic
     @Column(name = "upload_time")
-    @Temporal(TemporalType.TIMESTAMP)
-    public Date getUploadTime() {
+    public Timestamp getUploadTime() {
         return uploadTime;
     }
 
-    public void setUploadTime(Date uploadTime) {
+    public void setUploadTime(Timestamp uploadTime) {
         this.uploadTime = uploadTime;
     }
 
@@ -66,7 +67,7 @@ public class FileItem {
         this.filePath = filePath;
     }
 
-    @JsonBackReference
+/*    @JsonBackReference*/
     @ManyToOne
     @JoinColumn(name = "module_id")
     public ModuleItem getModuleItem() {

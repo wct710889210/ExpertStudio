@@ -12,9 +12,10 @@ public class PassageItem {
     private String title;
     private int userId;
     private ModuleItem moduleItem;
-    private Timestamp releseTime;
+    private Timestamp releaseTime;
     private String content;
     private String titlePhotoPath;
+    private int top;
 
     @Id
     @Column(name = "id")
@@ -26,6 +27,15 @@ public class PassageItem {
         this.id = id;
     }
 
+    @Basic
+    @Column(name = "top")
+    public int getTop() {
+        return top;
+    }
+
+    public void setTop(int top) {
+        this.top = top;
+    }
     @Basic
     @Column(name = "title")
     public String getTitle() {
@@ -46,7 +56,7 @@ public class PassageItem {
         this.userId = userId;
     }
 
-    @JsonBackReference
+/*    @JsonBackReference*/
     @ManyToOne
     @JoinColumn(name = "module_id")
     public ModuleItem getModuleItem() {
@@ -59,12 +69,12 @@ public class PassageItem {
 
     @Basic
     @Column(name = "relese_time")
-    public Timestamp getReleseTime() {
-        return releseTime;
+    public Timestamp getReleaseTime() {
+        return releaseTime;
     }
 
-    public void setReleseTime(Timestamp releseTime) {
-        this.releseTime = releseTime;
+    public void setReleaseTime(Timestamp releaseTime) {
+        this.releaseTime = releaseTime;
     }
 
     @Basic
