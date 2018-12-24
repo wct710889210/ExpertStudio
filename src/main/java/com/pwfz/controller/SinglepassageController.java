@@ -56,7 +56,7 @@ public class SinglepassageController {
             {
                 singlePassageService.updatesinglepassage(singlePassageModel);
                 json.setSuccess(true);
-                json.setMsg("编辑成功");
+                json.setMsg("添加成功");
                 json.setObj(singlePassageModel);
 
             }

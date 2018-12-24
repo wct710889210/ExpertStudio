@@ -29,6 +29,7 @@ public class SinglePassageServiceImp implements SinglePassageService {
         Singlepassage singlepassage=singlePassageRepository.findSinglepassageByModuleId(moduleId);
         SinglePassageModel singlePassageModel = new SinglePassageModel();
         BeanUtils.copyProperties(singlepassage,singlePassageModel);
+        singlePassageModel.setModuleId(moduleId);
         return singlePassageModel;
     }
 }
