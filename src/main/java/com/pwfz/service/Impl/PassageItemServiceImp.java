@@ -69,6 +69,7 @@ public class PassageItemServiceImp implements PassageItemService {
         {
             PassageItemModule passageItemModule=new PassageItemModule();
             BeanUtils.copyProperties(passageItem,passageItemModule);
+            passageItemModule.setModelId(modelId);
             passageItemModules.add(passageItemModule);
         }
         return passageItemModules;
