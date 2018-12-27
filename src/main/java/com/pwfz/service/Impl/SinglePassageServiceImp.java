@@ -31,6 +31,7 @@ public class SinglePassageServiceImp implements SinglePassageService {
         if (singlepassage==null)
             return null;
         BeanUtils.copyProperties(singlepassage,singlePassageModel);
+        singlePassageModel.setModuleId(moduleId);
         return singlePassageModel;
     }
 }

@@ -29,6 +29,7 @@ public class FileItemServiceImp implements FileItemService {
         for (FileItem fileItem : fileItems) {
             FileItemModle fileItemModle = new FileItemModle();
             BeanUtils.copyProperties(fileItem,fileItemModle);
+            fileItemModle.setModelId(moduleId);
             fileItemModles.add(fileItemModle);
         }
         return fileItemModles;
@@ -65,6 +66,7 @@ public class FileItemServiceImp implements FileItemService {
         {
             FileItemModle fileItemModle=new FileItemModle();
             BeanUtils.copyProperties(fileItem,fileItemModle);
+            fileItemModle.setUserId(userId);
             fileItemModles.add(fileItemModle);
         }
         return fileItemModles;

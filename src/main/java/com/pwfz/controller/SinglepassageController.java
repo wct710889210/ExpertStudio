@@ -43,7 +43,7 @@ public class SinglepassageController {
                 String randomFileName = uploadfileService.sendfile(photo, packagename, request);
                 singlePassageModel.setPhotopath("/"+packagename+"/" + randomFileName);
                 json.setSuccess(true);
-                json.setMsg("添加成功");
+                json.setMsg("更新成功");
                 json.setObj(singlePassageModel);
                 singlePassageService.updatesinglepassage(singlePassageModel);
             } catch (IOException e) {
@@ -56,7 +56,7 @@ public class SinglepassageController {
             {
                 singlePassageService.updatesinglepassage(singlePassageModel);
                 json.setSuccess(true);
-                json.setMsg("编辑成功");
+                json.setMsg("添加成功");
                 json.setObj(singlePassageModel);
 
             }
