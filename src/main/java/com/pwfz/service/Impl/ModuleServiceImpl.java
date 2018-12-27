@@ -4,9 +4,15 @@ import com.pwfz.entity.ModuleItem;
 import com.pwfz.entity.User;
 import com.pwfz.enumeration.ModuleType;
 import com.pwfz.model.ModuleModel;
+import com.pwfz.model.SinglePassageModel;
 import com.pwfz.repository.ModuleRepository;
+import com.pwfz.repository.NaviItemRepository;
 import com.pwfz.repository.UserRepository;
+import com.pwfz.service.FileItemService;
 import com.pwfz.service.ModuleService;
+import com.pwfz.service.PassageItemService;
+import com.pwfz.service.SinglePassageService;
+import org.hibernate.annotations.NaturalId;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +29,15 @@ public class ModuleServiceImpl implements ModuleService {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    MultiPhotoServiceImpl multiPhotoService;
+    @Autowired
+    SinglePassageService singlePassageService;
+    @Autowired
+    PassageItemService passageItemService;
+    @Autowired
+    FileItemService fileItemService;
+
     @Override
     public List<ModuleModel> get(int userId) {
         List<ModuleItem> moduleItems = moduleRepository.findByUser(userId);
@@ -34,10 +49,13 @@ public class ModuleServiceImpl implements ModuleService {
     }
 
     @Override
-    public int add(ModuleModel model) {
+    public ModuleModel add(ModuleModel model) {
         ModuleItem item = modelToEntity(model);
         ModuleItem result = moduleRepository.save(item);
-        return result.getId();
+        model.setId(result.getId());
+        model.setUsername(result.getUser().getName());
+        model.setUserId(result.getUser().getId());
+        return model;
     }
 
     @Override
@@ -85,19 +103,34 @@ public class ModuleServiceImpl implements ModuleService {
     private ModuleModel entityToModel(ModuleItem moduleItem){
         ModuleModel model = new ModuleModel();
         BeanUtils.copyProperties(moduleItem,model);
-        if(moduleItem.getType() == ModuleType.NAVIGATION)
+        if(moduleItem.getType() == ModuleType.NAVIGATION){
             model.setType("导航栏");
+        }
         else if(moduleItem.getType() == ModuleType.CAROUSEL)
+        {
             model.setType("轮播多图");
-        else if(moduleItem.getType() == ModuleType.LISTPHOTO)
+            model.setContent(multiPhotoService.get(moduleItem.getId()));
+        }
+        else if(moduleItem.getType() == ModuleType.LISTPHOTO){
             model.setType("列表多图");
-        else if(moduleItem.getType() == ModuleType.FILEDOWNLOAD)
+            model.setContent(multiPhotoService.get(moduleItem.getId()));
+        }
+        else if(moduleItem.getType() == ModuleType.FILEDOWNLOAD){
             model.setType("文件下载");
-        else if(moduleItem.getType() == ModuleType.PASAGELIST)
+            model.setContent(fileItemService.selectfile(moduleItem.getId()));
+        }
+        else if(moduleItem.getType() == ModuleType.PASAGELIST) {
             model.setType("文章列表");
-        else if(moduleItem.getType() == ModuleType.SINGLEPASAGE)
+            model.setContent(passageItemService.selectpassage(moduleItem.getId()));
+        }
+        else if(moduleItem.getType() == ModuleType.SINGLEPASAGE){
             model.setType("单篇文章");
+            List<SinglePassageModel> singlepassage = new ArrayList<>();
+            singlepassage.add(singlePassageService.findsinglepassage(moduleItem.getId()));
+            model.setContent(singlepassage);
+        }
         model.setUserId(moduleItem.getUser().getId());
+        model.setUsername(moduleItem.getUser().getName());
         return model;
     }
 

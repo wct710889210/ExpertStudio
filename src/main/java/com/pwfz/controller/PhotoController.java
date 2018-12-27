@@ -2,6 +2,7 @@ package com.pwfz.controller;
 
 import com.pwfz.model.Json;
 import com.pwfz.model.PhotoModel;
+import com.pwfz.model.SessionInfo;
 import com.pwfz.service.PhotoService;
 import com.pwfz.util.FileNameUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 
@@ -53,8 +55,12 @@ public class PhotoController {
      * @return
      */
     @RequestMapping("add")
-    public Json add(MultipartFile photo, PhotoModel model, HttpServletRequest request){
-        System.out.println(model);
+    public Json add(MultipartFile photo, PhotoModel model, HttpServletRequest request, HttpSession session){
+//        SessionInfo sessionInfo = (SessionInfo)session.getAttribute("sessionInfo");
+//        sessionInfo.getId();
+
+        model.setUserId(1);
+
         Json json = new Json();
 
         String rootPath = new File(request.getServletContext().getRealPath("")).getParentFile().getAbsolutePath();

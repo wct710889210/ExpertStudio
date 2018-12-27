@@ -28,6 +28,8 @@ public class SinglePassageServiceImp implements SinglePassageService {
     public SinglePassageModel findsinglepassage(int moduleId) {
         Singlepassage singlepassage=singlePassageRepository.findSinglepassageByModuleId(moduleId);
         SinglePassageModel singlePassageModel = new SinglePassageModel();
+        if (singlepassage==null)
+            return null;
         BeanUtils.copyProperties(singlepassage,singlePassageModel);
         return singlePassageModel;
     }
