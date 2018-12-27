@@ -7,7 +7,7 @@ import java.util.Map;
 
 public interface ModuleService {
     List<ModuleModel> get(int userId);
-    int add(ModuleModel module);
+    ModuleModel add(ModuleModel module);
     void delete(int moduleId);
     Map<String,List<ModuleModel>> backGet(int userId);
     Map<String,String> getAccessible(int userId);

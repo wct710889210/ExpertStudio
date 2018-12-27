@@ -23,13 +23,14 @@ import java.io.OutputStream;
 import java.util.List;
 
 @CrossOrigin(origins = "*")
-@RestController
+@Controller
 @RequestMapping("/user")
 public class UserController {
     @Autowired
     UserService userService;
 
     @RequestMapping("login")
+    @ResponseBody
     public Json login(UserModel userModel, HttpSession session){
         Json json = new Json();
         System.out.println(userModel);
@@ -49,6 +50,7 @@ public class UserController {
     }
 
     @RequestMapping("register")
+    @ResponseBody
     public Json register(UserModel userModel){
         Json json = new Json();
         try {
@@ -64,6 +66,7 @@ public class UserController {
     }
 
     @RequestMapping("logout")
+    @ResponseBody
     public Json logout(HttpSession session){
         Json json = new Json();
         if (session != null) {
@@ -72,5 +75,15 @@ public class UserController {
         json.setSuccess(true);
         json.setMsg("注销成功！");
         return json;
+    }
+
+    @RequestMapping("showLogin")
+    public String showLogin(){
+        return "login";
+    }
+
+    @RequestMapping("showRegister")
+    public String showRegister(){
+        return "register";
     }
 }

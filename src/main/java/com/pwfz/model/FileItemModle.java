@@ -61,7 +61,15 @@ public class FileItemModle {
         this.filePath = filePath;
     }
 
-
-
-
+    @Override
+    public String toString() {
+        return "FileItemModle{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", uploadTime=" + uploadTime +
+                ", fileName='" + fileName + '\'' +
+                ", filePath='" + filePath + '\'' +
+                ", modelId=" + modelId +
+                '}';
+    }
 }

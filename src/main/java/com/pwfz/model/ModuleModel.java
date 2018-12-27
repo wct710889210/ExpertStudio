@@ -1,10 +1,14 @@
 package com.pwfz.model;
 
+import java.util.List;
+
 public class ModuleModel {
     private int id;
     private String name;
     private String type;
     private int userId;
+    private String username;
+    private List content;
 
     public int getId() {
         return id;
@@ -36,6 +40,22 @@ public class ModuleModel {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public List getContent() {
+        return content;
+    }
+
+    public void setContent(List content) {
+        this.content = content;
     }
 
     public ModuleModel(int id, String name, int userId) {

@@ -77,4 +77,16 @@ public class FileItem {
     public void setModuleItem(ModuleItem moduleItem) {
         this.moduleItem = moduleItem;
     }
+
+    @Override
+    public String toString() {
+        return "FileItem{" +
+                "id=" + id +
+                ", uploadUser=" + uploadUser +
+                ", uploadTime=" + uploadTime +
+                ", fileName='" + fileName + '\'' +
+                ", filePath='" + filePath + '\'' +
+                ", moduleItem=" + moduleItem +
+                '}';
+    }
 }

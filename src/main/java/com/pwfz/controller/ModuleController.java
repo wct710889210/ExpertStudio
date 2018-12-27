@@ -2,12 +2,10 @@ package com.pwfz.controller;
 
 import com.pwfz.model.Json;
 import com.pwfz.model.ModuleModel;
+import com.pwfz.model.SessionInfo;
 import com.pwfz.service.ModuleService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -24,9 +22,8 @@ public class ModuleController {
      * @return  模块列表
      */
     @RequestMapping("get")
-    public List<ModuleModel> get(){
-        int userId = 1;
-
+    public List<ModuleModel> get(@SessionAttribute SessionInfo sessionInfo){
+        int userId = 1;//sessionInfo.getId();
         return moduleService.get(userId);
     }
 
@@ -38,11 +35,10 @@ public class ModuleController {
     @RequestMapping("add")
     public Json add(ModuleModel module){
         Json json = new Json();
-        int id = moduleService.add(module);
+        ModuleModel model = moduleService.add(module);
         json.setSuccess(true);
         json.setMsg("添加成功");
-        module.setId(id);
-        json.setObj(module);
+        json.setObj(model);
         return json;
     }
 
