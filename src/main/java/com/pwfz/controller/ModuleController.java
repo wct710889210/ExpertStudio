@@ -22,7 +22,7 @@ public class ModuleController {
      * @return  模块列表
      */
     @RequestMapping("get")
-    public List<ModuleModel> get(@SessionAttribute SessionInfo sessionInfo){
+    public List<ModuleModel> get(){ //@SessionAttribute SessionInfo sessionInfo
         int userId = 1;//sessionInfo.getId();
         return moduleService.get(userId);
     }

@@ -1,7 +1,5 @@
 package com.pwfz.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import javax.persistence.*;
 import java.sql.Timestamp;
 

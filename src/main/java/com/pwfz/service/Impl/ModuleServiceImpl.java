@@ -6,17 +6,14 @@ import com.pwfz.enumeration.ModuleType;
 import com.pwfz.model.ModuleModel;
 import com.pwfz.model.SinglePassageModel;
 import com.pwfz.repository.ModuleRepository;
-import com.pwfz.repository.NaviItemRepository;
 import com.pwfz.repository.UserRepository;
 import com.pwfz.service.FileItemService;
 import com.pwfz.service.ModuleService;
 import com.pwfz.service.PassageItemService;
 import com.pwfz.service.SinglePassageService;
-import org.hibernate.annotations.NaturalId;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
