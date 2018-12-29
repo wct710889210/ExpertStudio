@@ -9,7 +9,6 @@ public class SinglePassageModel {
     private String photopath;
     private int moduleId;
 
-
     public int getModuleId() {
         return moduleId;
     }

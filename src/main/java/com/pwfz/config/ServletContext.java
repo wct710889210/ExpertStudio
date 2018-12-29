@@ -41,6 +41,9 @@ public class ServletContext extends WebMvcConfigurerAdapter {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new IsLoginInterceptor())
-                .addPathPatterns("");
+                .addPathPatterns("/module/get")
+                .addPathPatterns("/file/upload")
+                .addPathPatterns("/passage/upload")
+                .addPathPatterns("/singlepassage/update");
     }
 }

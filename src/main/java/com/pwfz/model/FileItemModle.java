@@ -2,12 +2,14 @@ package com.pwfz.model;
 
 import com.pwfz.entity.ModuleItem;
 import com.pwfz.entity.User;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.sql.Timestamp;
 
 public class FileItemModle {
     private int id;
     private int userId;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Timestamp uploadTime;
     private String fileName;
     private String filePath;
@@ -37,6 +39,7 @@ public class FileItemModle {
         this.id = id;
     }
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     public Timestamp getUploadTime() {
         return uploadTime;
     }

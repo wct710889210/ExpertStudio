@@ -11,6 +11,7 @@ public class User {
     private String username;
     private String password;
     private String name;
+    private String body;
     private Collection<ModuleItem> moduleItems;
 
     @Id
@@ -48,6 +49,15 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Column(name = "body")
+    public String getBody() {
+        return body;
+    }
+
+    public void setBody(String body) {
+        this.body = body;
     }
 
     @JsonBackReference

@@ -1,6 +1,7 @@
 package com.pwfz.model;
 
 import com.pwfz.entity.ModuleItem;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.sql.Timestamp;
 
@@ -12,10 +13,8 @@ public class PassageItemModule {
     private Timestamp releaseTime;
     private String content;
     private String titlePhotoPath;
-
-
-
     private int top;
+
     public int getTop() {
         return top;
     }
@@ -54,7 +53,7 @@ public class PassageItemModule {
         this.userId = userId;
     }
 
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     public Timestamp getReleaseTime() {
         return releaseTime;
     }
