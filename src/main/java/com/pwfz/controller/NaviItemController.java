@@ -21,8 +21,7 @@ public class NaviItemController {
     @RequestMapping(value = "get",produces = "application/json; charset=UTF-8")
     @ResponseBody
     public List<NaviItem> get(int moduleId){
-        int moduleid=1;
-        List<NaviItem> naviItems =  naviItemRepository.findAllFirstNavi(moduleid);
+        List<NaviItem> naviItems =  naviItemRepository.findAllFirstNavi(moduleId);
         return naviItems;
     }
 

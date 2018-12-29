@@ -50,8 +50,8 @@ public class FileItemController {
     @ResponseBody
     public Json savefile(HttpServletRequest request, MultipartFile files, FileItemModle fileItemModle, HttpSession session)
     {
-//        SessionInfo sessionInfo=(SessionInfo)session.getAttribute("sessioninfo");
-//        fileItemModle.setUserId(sessionInfo.getId());
+        SessionInfo sessionInfo=(SessionInfo)session.getAttribute("sessionInfo");
+        fileItemModle.setUserId(sessionInfo.getId());
         Json json = new Json();
         Timestamp timestamp=new Timestamp(System.currentTimeMillis());
         fileItemModle.setUploadTime(timestamp);
@@ -103,7 +103,7 @@ public class FileItemController {
     @ResponseBody
     public List<FileItemModle> findfile(HttpSession session)
     {
-        SessionInfo sessionInfo=(SessionInfo)session.getAttribute("sessioninfo");
+        SessionInfo sessionInfo=(SessionInfo)session.getAttribute("sessionInfo");
         return fileItemService.findfile(sessionInfo.getId());
     }
 

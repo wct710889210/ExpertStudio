@@ -38,9 +38,9 @@ public class ServletContext extends WebMvcConfigurerAdapter {
     }
 
 //    添加拦截器
-//    @Override
-//    public void addInterceptors(InterceptorRegistry registry) {
-//        registry.addInterceptor(new IsLoginInterceptor())
-//                .addPathPatterns("");
-//    }
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new IsLoginInterceptor())
+                .addPathPatterns("");
+    }
 }

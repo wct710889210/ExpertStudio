@@ -47,8 +47,10 @@ public class PassageItemController {
 
     @RequestMapping("getList")
     @ResponseBody
-    public List<PassageItemModule> select(int userId)
+    public List<PassageItemModule> select(HttpSession session)
     {
+        SessionInfo sessionInfo=(SessionInfo)session.getAttribute("sessionInfo");
+        int userId=sessionInfo.getId();
         List<PassageItemModule> passageItemModules= passageItemService.findpassage(userId);
         return passageItemModules;
     }
@@ -57,8 +59,8 @@ public class PassageItemController {
     @ResponseBody
     public Json updatepassage(HttpServletRequest request, MultipartFile passagephoto, PassageItemModule passageItemModule, HttpSession session) {
 
-//        SessionInfo sessionInfo=(SessionInfo)session.getAttribute("sessioninfo");
-//        passageItemModule.setUserId(sessionInfo.getId());
+        SessionInfo sessionInfo=(SessionInfo)session.getAttribute("sessionInfo");
+        passageItemModule.setUserId(sessionInfo.getId());
         String packagename = "uploadfiles/passagephoto";
         Json json = new Json();
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());passageItemModule.setReleaseTime(timestamp);
