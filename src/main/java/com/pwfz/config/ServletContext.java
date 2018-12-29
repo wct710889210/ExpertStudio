@@ -38,9 +38,12 @@ public class ServletContext extends WebMvcConfigurerAdapter {
     }
 
 //    添加拦截器
-//    @Override
-//    public void addInterceptors(InterceptorRegistry registry) {
-//        registry.addInterceptor(new IsLoginInterceptor())
-//                .addPathPatterns("");
-//    }
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new IsLoginInterceptor())
+                .addPathPatterns("/module/get")
+                .addPathPatterns("/file/upload")
+                .addPathPatterns("/passage/upload")
+                .addPathPatterns("/singlepassage/update");
+    }
 }

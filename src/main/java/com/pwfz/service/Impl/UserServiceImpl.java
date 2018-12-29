@@ -18,7 +18,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserModel login(UserModel userModel) {
         User user = userRepository.findByUsername(userModel.getUsername());
-        System.out.println(user);
         if(user != null && user.getPassword().equals(MD5Util.md5(userModel.getPassword()))){
             userModel.setId(user.getId());
             userModel.setPassword(null);
@@ -39,4 +38,19 @@ public class UserServiceImpl implements UserService {
             userRepository.save(user);
         }
     }
+
+    @Override
+    public void saveBody(String body, int userId) {
+        User user = userRepository.findOne(userId);
+        user.setBody(body);
+        userRepository.save(user);
+    }
+
+    @Override
+    public String getBody(int userId) {
+        User user = userRepository.findOne(userId);
+        return user.getBody();
+    }
+
+
 }

@@ -77,6 +77,31 @@ public class UserController {
         return json;
     }
 
+    @RequestMapping("saveBody")
+    @ResponseBody
+    public Json saveBody(String body){
+        //todo 从session获取id
+        int userId = 1;
+        Json json = new Json();
+        userService.saveBody(body,userId);
+        json.setSuccess(true);
+        json.setMsg("保存成功");
+        return json;
+    }
+
+    @RequestMapping("getBody")
+    @ResponseBody
+    public Json getBody(){
+        //todo 从session获取id
+        int userId = 1;
+        Json json = new Json();
+        String body = userService.getBody(userId);
+        json.setSuccess(true);
+        json.setMsg("页面body");
+        json.setObj(body);
+        return json;
+    }
+
     @RequestMapping("showLogin")
     public String showLogin(){
         return "login";
