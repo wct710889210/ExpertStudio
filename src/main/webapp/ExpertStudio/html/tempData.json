@@ -1,0 +1,325 @@
+{
+  "name": "html",
+  "version": "1.0.0",
+  "navList": {
+    "单篇文章": [
+      {
+        "id": 1,
+        "name": "跤鎏的姿势解析",
+        "type": "单篇文章",
+        "userId": 1
+      },
+      {
+        "id": 99,
+        "name": "潘大师的独门技巧",
+        "type": "单篇文章",
+        "userId": 1
+      }
+    ],
+    "列表多图": [
+      {
+        "id": 5,
+        "name": "摔跤名师",
+        "type": "列表多图",
+        "userId": 1
+      },
+      {
+        "id": 55,
+        "name": "战斗大师",
+        "type": "列表多图",
+        "userId": 1
+      }
+    ],
+    "文件下载": [
+      {
+        "id": 8,
+        "name": "游戏下载",
+        "type": "文件下载",
+        "userId": 1
+      },
+      {
+        "id": 88,
+        "name": "游戏攻略下载",
+        "type": "文件下载",
+        "userId": 1
+      }
+    ],
+    "轮播多图": [
+      {
+        "id": 6,
+        "name": "摔跤轮播",
+        "type": "轮播多图",
+        "userId": 1
+      },
+      {
+        "id": 66,
+        "name": "可爱轮播",
+        "type": "轮播多图",
+        "userId": 1
+      }
+    ],
+    "文章列表": [
+      {
+        "id": 7,
+        "name": "游戏文章",
+        "type": "文章列表",
+        "userId": 1
+      },
+      {
+        "id": 77,
+        "name": "程序文章",
+        "type": "文章列表",
+        "userId": 1
+      }
+    ]
+  },
+  "carouselList": [
+    {
+      "id": 11,
+      "moduleId": 6,
+      "description": "一号图片",
+      "linkPath": "www.google1.com",
+      "photoPath": "../upload/1.jpg"
+    },
+    {
+      "id": 12,
+      "moduleId": 6,
+      "description": "二号图片",
+      "linkPath": "www.google2.com",
+      "photoPath": "../upload/2.jpg"
+    },
+    {
+      "id": 13,
+      "moduleId": 6,
+      "description": "三号图片",
+      "linkPath": "www.google3.com",
+      "photoPath": " ../upload/3.jpg"
+    },
+    {
+      "id": 14,
+      "moduleId": 6,
+      "description": "四号图片",
+      "linkPath": "www.google4.com",
+      "photoPath": " ../upload/4.jpg"
+    },
+    {
+      "id": 15,
+      "moduleId": 6,
+      "description": "五号图片",
+      "linkPath": "www.google5.com",
+      "photoPath": "../upload/5.jpg"
+    }
+  ],
+  "articleList": [
+    {
+      "id": 1,
+      "title": "伟大帝国",
+      "moduleId": 7,
+      "releaseTime": "2018-1-1",
+      "content": "<p>首先，一个帝国需要格式</p><p>&nbsp; &nbsp; &nbsp; &nbsp; 比如缩进<br></p><p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 或者更多<br></p><p>&amp;dd&gt;</p>",
+      "titlePhotoPath": "../upload/1.jpg",
+      "top": true
+    },
+    {
+      "id": 2,
+      "title": "无图的艺术",
+      "moduleId": 7,
+      "content": "无图就是艺术！—某忍者",
+      "titlePhotoPath": "",
+      "releaseTime": "2017-10-1",
+      "top": true
+    },
+    {
+      "id": 3,
+      "title": "统治的艺术",
+      "moduleId": 7,
+      "releaseTime": "2018-2-28",
+      "content": "作为一个成功的统治者，首先要理解群众的需求...",
+      "titlePhotoPath": "../upload/2.jpg",
+      "top": false
+    },
+    {
+      "id": 4,
+      "title": "枪兵训练书",
+      "moduleId": 7,
+      "releaseTime": "2018-1-1",
+      "content": "一个帝国的诞生，前提是公民意识的诞生，以及工业科技...",
+      "titlePhotoPath": "../upload/3.jpg",
+      "top": false
+    },
+    {
+      "id": 5,
+      "title": "弓手技巧",
+      "moduleId": 7,
+      "releaseTime": "2018-1-1",
+      "content": "一个帝国的诞生，前提是公民意识的诞生，以及工业科技...",
+      "titlePhotoPath": "../upload/4.jpg",
+      "top": true
+    },
+    {
+      "id": 6,
+      "title": "马与平衡",
+      "moduleId": 7,
+      "releaseTime": "2018-1-1",
+      "content": "一个帝国的诞生，前提是公民意识的诞生，以及工业科技...",
+      "titlePhotoPath": "../upload/5.jpg",
+      "top": false
+    },
+    {
+      "id": 7,
+      "title": "酿造与种植",
+      "moduleId": 7,
+      "releaseTime": "2018-1-1",
+      "content": "一个帝国的诞生，前提是公民意识的诞生，以及工业科技...",
+      "titlePhotoPath": "../upload/6.jpg",
+      "top": false
+    },
+    {
+      "id": 8,
+      "title": "机械的运转原理",
+      "moduleId": 7,
+      "releaseTime": "2018-1-1",
+      "content": "一个帝国的诞生，前提是公民意识的诞生，以及工业科技...",
+      "titlePhotoPath": "../upload/7.jpg",
+      "top": false
+    },
+    {
+      "id": 9,
+      "title": "自然哲学的数学原理",
+      "moduleId": 7,
+      "releaseTime": "2018-1-1",
+      "content": "一个帝国的诞生，前提是公民意识的诞生，以及工业科技...",
+      "titlePhotoPath": "../upload/8.jpg",
+      "top": false
+    },
+    {
+      "id": 10,
+      "title": "置顶的伟大帝国",
+      "moduleId": 7,
+      "releaseTime": "2018-1-1",
+      "content": "一个帝国的诞生，前提是公民意识的诞生，以及工业科技...",
+      "titlePhotoPath": "../upload/9.jpg",
+      "top": true
+    }
+  ],
+  "fileList": [
+    {
+      "id": 1,
+      "moduleId": 8,
+      "uploadTime": "2018-1-1",
+      "fileName": "英雄联盟破解版",
+      "filePath": "../upload/1.jpg"
+    },
+    {
+      "id": 2,
+      "moduleId": 8,
+      "uploadTime": "2018-9-3",
+      "fileName": "穿越火线破解版",
+      "filePath": "../upload/2.jpg"
+    },
+    {
+      "id": 3,
+      "moduleId": 8,
+      "uploadTime": "2011-9-4",
+      "fileName": "摩尔庄园破解版",
+      "filePath": "../upload/3.jpg"
+    },
+    {
+      "id": 4,
+      "moduleId": 8,
+      "uploadTime": "2018-7-3",
+      "fileName": "maven配置",
+      "filePath": "../upload/4.jpg"
+    },
+    {
+      "id": 5,
+      "moduleId": 8,
+      "uploadTime": "2018-5-3",
+      "fileName": "摔跤视频",
+      "filePath": "../upload/5.jpg"
+    },
+    {
+      "id": 6,
+      "moduleId": 8,
+      "uploadTime": "2018-4-3",
+      "fileName": "王晨韬大战张铁标",
+      "filePath": "../upload/6.jpg"
+    },
+    {
+      "id": 7,
+      "moduleId": 8,
+      "uploadTime": "2018-3-3",
+      "fileName": "浙科院更名公告",
+      "filePath": "../upload/7.jpg"
+    },
+    {
+      "id": 8,
+      "moduleId": 8,
+      "uploadTime": "2018-9-13",
+      "fileName": "Dark的世界",
+      "filePath": "../upload/8.jpg"
+    },
+    {
+      "id": 9,
+      "moduleId": 8,
+      "uploadTime": "2018-9-23",
+      "fileName": "爱上星空",
+      "filePath": "../upload/1.jpg"
+    },
+    {
+      "id": 10,
+      "moduleId": 8,
+      "uploadTime": "2018-9-13",
+      "fileName": "星空解析图",
+      "filePath": "../upload/2.jpg"
+    },
+    {
+      "id": 11,
+      "moduleId": 8,
+      "uploadTime": "2018-9-2",
+      "fileName": "土星的观测",
+      "filePath": "../upload/3.jpg"
+    }
+  ],
+  "singleArticle": {
+    "id": 5,
+    "title": "亲爱的安德烈",
+    "description": "这是一封家书。",
+    "moduleId": 1,
+    "releaseTime": "2012-1-1",
+    "content": "<p>首先，一个表现良好的安德烈需要格式</p><p>&nbsp; &nbsp; &nbsp; &nbsp; 比如缩进<br></p><p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 或者更多<br></p><p>&amp;dd&gt;</p>",
+    "photopath": "../upload/7.jpg"
+  },
+  "depotList": [
+    {
+      "id": 1,
+      "photoPath": "../upload/9.jpg"
+    },
+    {
+      "id": 2,
+      "photoPath": "../upload/8.jpg"
+    }
+  ],
+  "obj": [
+    {
+      "id": 1,
+      "photoPath": "../upload/6.jpg"
+    },
+    {
+      "id": 2,
+      "photoPath": "../upload/7.jpg"
+    },
+    {
+      "id": 3,
+      "photoPath": "../upload/8.jpg"
+    },
+    {
+      "id": 4,
+      "photoPath": "../upload/9.jpg"
+    },
+    {
+      "id": 5,
+      "photoPath": "../upload/8.jpg"
+    }
+  ]
+}

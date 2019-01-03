@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>后台管理</title>
+
+    <!-- if everything over,delete those which can delete  -->
+    <!-- Bootstrap -->
+    <link href="/data/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom Theme Style -->
+    <link href="/data/build/css/custom.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="/data/css/backstage.css">
+    <link rel="stylesheet" type="text/css" href="/data/icon/iconfont.css">
+
+    <script type="text/javascript" src="/data/js/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="/data/js/vue.js"></script>
+    <script type="text/javascript" src="/data/js/backstage.js"></script>
+    <script type="text/javascript" src="/data/js/vueResource.js"></script>
+    <script type="text/javascript" src="/data/js/vuePaginate.js"></script>
+    <script type="text/javascript" src="/data/js/wangEditor.min.js"></script>
+
+</head>
+<body>
+<div class="nav" id="nav">
+    <div class="nav-top">
+        <div id="mini" @click="toIndex"
+             style="border-bottom:1px solid rgba(255,255,255,.1);padding: 7px 13px;overflow: hidden;cursor: pointer">
+            <i class="iconfont icon-settings" style="font-size: 30px;color: rgba(156,170,196,0.91);"></i>
+            <span class="nav-title" style="font-size: 18px;color: #9caac4;padding: 0 10px;">网站管理</span>
+        </div>
+    </div>
+
+    <ul id="aat">
+        <!-- 模块导航项-->
+        <li class='nav-item' v-for="(type,index) in navType">
+            <a href='#'>
+                <i class='iconfont icon-item nav-icon'></i>
+                <span>{{type}}</span>
+                <i class='iconfont icon-rightArrow nav-more'></i>
+            </a>
+            <ul>
+                <li v-for="module in navList[type]" @click="showModule(type,module.id,module.name)">
+                    <a href='#'>
+                        <span>{{module.name}}</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+    </ul>
+
+</div>
+
+
+<div class="content">
+
+    <div id="index">
+        <div class="head">
+            <button class="editPage btn btn-default" href="#">编辑页面</button>
+            <p>网站总览</p>
+            <hr/>
+        </div>
+        <div class="middle" style="background-color: #e7e9ec;overflow: hidden">
+            <div id="welcome" class="welcome" style="background-color: white">听见涛声，欢迎您的到来</div>
+
+            <div style="overflow: hidden">
+                <div id="welcomeModule1" class="welcomeBlock ">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>产品功能</h2>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <ul class="list-unstyled timeline">
+                                <li>
+                                    <div class="block"><br>
+                                        <h2 class="title">
+                                            <p style="font-size: 20px">提供多种网站模板</p>
+                                        </h2>
+                                        <br></div>
+                                </li>
+                                <li>
+                                    <div class="block"><br>
+                                        <h2 class="title">
+                                            <p style="font-size: 20px">个人定制网站</p>
+                                        </h2>
+                                        <br></div>
+                                </li>
+                                <li>
+                                    <div class="block"><br>
+                                        <h2 class="title">
+                                            <p style="font-size: 20px">自由创作内容</p>
+                                        </h2>
+                                        <br></div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="welcomeModule2" class="welcomeBlock ">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>使用说明</h2>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <ul class="list-unstyled timeline">
+                                <li>
+                                    <div class="block"><br>
+                                        <h2 class="title">
+                                            <p style="font-size: 20px">从导航栏选择模块类型</p>
+                                        </h2>
+                                        <br></div>
+                                </li>
+                                <li>
+                                    <div class="block"><br>
+                                        <h2 class="title">
+                                            <p style="font-size: 20px">选定你想要的模块</p>
+                                        </h2>
+                                        <br></div>
+                                </li>
+                                <li>
+                                    <div class="block"><br>
+                                        <h2 class="title">
+                                            <p style="font-size: 20px">开始你的创作之旅</p>
+                                        </h2>
+                                        <br></div>
+                                </li>
+                            </ul>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <!-- 需要后台生成web路径
+            <div id="webPath" class="welcome" style="background-color: white;margin-top: 1%;font-size: 27px">
+                您的网址是：www.av.com
+            </div>
+            -->
+
+        </div>
+
+    </div>
+
+
+    <div id="carouselModule">
+        <div class="head">
+            <button class="editPage btn btn-default" href="#">编辑页面</button>
+            <p>{{pageTitle}}管理界面</p>
+            <hr/>
+        </div>
+        <div class="middle">
+            <div class="table-header">
+                <button class="btn btn-default" @click="showAddModal">添加图片</button>
+                <p>{{name}}</p>
+            </div>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th width="23%">图片
+                    <th width="23%">图片描述</th>
+                    <th width="23%">跳转链接</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody ref='tbody'>
+                <tr v-for="(c,index) in carouselList" draggable='true' @dragstart='drag($event)' @drop='drop($event)'
+                    @dragover='allowDrop($event)'>
+                    <td>
+                        <img :src="c.photoPath"/>
+                    </td>
+
+                    <td>{{c.description}}</td>
+                    <td>{{c.linkPath}}</td>
+                    <td>
+                        <button class="btn btn-default" href="#" v-on:click="showCarouselModal(index)">编辑</button>
+                        <button class="btn btn-default" href="#" v-on:click="deleteCarouse(index)">删除</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="bottom">
+            <div class="bottom-line">
+                <button class="btn btn-default" href="#" @click="saveList">保存</button>
+                <!--测试片段
+                <br><br><br>
+
+                <pre @click="updateTest">{{test}}</pre>
+                -->
+            </div>
+        </div>
+
+        <div id="carouselModalContent" v-bind:class="{ show : carouselModal.show }" class="modal-1-inside">
+            <!--套模板的一个div -form-383行-->
+            <div class="x_panel">
+                <div class="x_title">
+                    <div style="float: right" class="btn btn-default" v-on:click="closeCarouselModal">关闭页面</div>
+                    <h2>{{carouselModal.type == 2? '编辑图片':'添加图片'}}</h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <br/>
+                    <form class="form-horizontal form-label-left input_mask">
+                        <div class="form-group">
+                            <div style="text-align: center">
+                                <img :src="carouselModal.temp.photoPath" style="width: 230px;height: 150px;"/>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">图片描述</label>
+                            <div class="col-md-7 col-sm-7 col-xs-10">
+                                <input v-model="carouselModal.temp.description" type="text" class="form-control"
+                                       placeholder="图片描述">
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">图片路径</label>
+                            <div class="col-md-5 col-sm-5 col-xs-10" style="padding-right: 0;margin-right: 0">
+                                <input v-model="carouselModal.temp.photoPath" type="text" class="form-control"
+                                       disabled="disabled" placeholder="图片路径">
+                            </div>
+                            <div class="col-md-2 col-sm-2 col-xs-10" style="padding-left: 0;margin-left: 0">
+                                <button v-on:click="showDepot" type="button" class="btn btn-primary">选择图片
+                                </button>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">跳转链接</label>
+                            <div class="col-md-5 col-sm-5 col-xs-5" style="padding-right: 0;margin-right: 0">
+                                <input v-model="carouselModal.temp.linkPath" type="text" class="form-control"
+                                       placeholder="跳转链接">
+                            </div>
+                            <div class="col-md-2 col-sm-2 col-xs-10" style="padding-left: 0;margin-left: 0">
+                                <button v-on:click="showLinkModal" type="button" class="btn btn-primary">设置链接
+                                </button>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="ln_solid"></div>
+                        <div class="form-group">
+                            <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                                <button v-on:click.prevent="submitEditor(carouselModal.index)"
+                                        class="btn btn-success">提交
+                                </button>
+                                <button v-on:click="closeCarouselModal" type="button" class="btn btn-primary">取消
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="carouselModal" v-bind:class="{ show: carouselModal.show }" class="modal-1"></div>
+    </div>
+    <div id="pictureListModule">in fact,I will never be used!</div>
+    <div id="articleModule">
+
+        <div class="head">
+            <button class="editPage btn btn-default" href="#">编辑页面</button>
+            <p>文章列表管理界面</p>
+            <hr/>
+        </div>
+
+        <div class="middle">
+            <div class="table-header">
+                <button class="btn btn-default" @click="showAddModal">添加文章</button>
+                <p>{{name}}</p>
+            </div>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th style="width: 25%">文章标题</th>
+                    <!--<th>标题图片</th>-->
+                    <th style="width: 25%">内容</th>
+                    <th style="width: 20%">发布时间</th>
+                    <th style="width: 10%">置顶</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+
+                <tbody v-if="articleList.length >= 1">
+
+                <paginate name="zlPaginate" :list="articleList" :per="pageSize" :container="this"
+                          v-if="articleList.length >= 1">
+                    <tr v-for="(article,index) in paginated('zlPaginate')">
+                        <td>{{article.title}}</td>
+                        <td>{{cutContent(article.content)}}</td>
+                        <!--<td><img :src="article.titlePhotoPath" style=""/></td> -->
+                        <td>{{getTime(article.releaseTime)}}</td>
+                        <td><input type="checkbox" v-model="article.top" v-on:click="topChange(article.top,article.id)">
+                        </td>
+                        <td>
+                            <button class="btn btn-default" href="#" v-on:click="showEditorModal(article.id)">编辑
+                            </button>
+                            <button class="btn btn-default" href="#" v-on:click="deleteArticle(article.id)">删除</button>
+                        </td>
+                    </tr>
+                </paginate>
+                </tbody>
+            </table>
+
+        </div>
+
+        <div class="bottom">
+            <div class="bottom-line">
+                <paginate-links v-if="articleList.length >= 1"
+                                for="zlPaginate"
+                                :show-step-links="true"
+                                :step-links="{next: '下一页',prev: '上一页'}"
+                ></paginate-links>
+
+                <br><br><br>
+                <!-- 测试的时候开启
+                <pre @click="updateTest"
+                     style="width: 500px;white-space: pre-wrap;word-wrap: break-word;">{{test}}</pre>
+                    -->
+            </div>
+        </div>
+
+        <div id="articleModalContent" v-bind:class="{ show : articleModal.show }" style="width:60%;top:5%;left:20%;"
+             class="modal-1-inside">
+            <div class="x_panel">
+                <div class="x_title">
+                    <button style="float: right;" v-on:click="closeModal" class="btn btn-default">
+                        关闭页面
+                    </button>
+                    <h2>{{articleModal.type==2 ?'编辑文章':'添加文章'}}</h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <form class="form-horizontal form-label-left input_mask">
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-2">标题</label>
+                            <div class="col-md-6 col-sm-6 col-xs-6">
+                                <input v-model="articleModal.temp.title" type="text" class="form-control"
+                                       placeholder="标题">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-2">标题图片</label>
+                            <div class="col-md-2 col-sm-2 col-xs-10">
+                                <div class="btn btn-primary col-md-8 col-sm-8 ">
+                                    {{articleModal.fileState?'已选择':'选择文件'}}
+                                    <input v-on:change="changeFileState($event)" type="file" class="fileInput"
+                                           accept="image/jpeg,image/png,image/gif"/>
+                                </div>
+                                <br><br><br>
+                                <div class="btn btn-primary col-md-8 col-sm-8 " @click.prevent="clearFile">
+                                    清除图片
+                                </div>
+                            </div>
+
+                            <template
+                                    v-if="articleModal.currentPhotoPath != null & articleModal.currentPhotoPath !== ''">
+                                <img :src="articleModal.currentPhotoPath" style="width: 230px;height: 135px"
+                                     class="col-md-7 col-sm-7 ">
+                            </template>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-2">文章内容</label>
+                            <div class="col-md-10 col-sm-10 col-xs-10">
+                                <!-- 富文本编辑器 -->
+                                <div id="articleEditor">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ln_solid"></div>
+                        <div class="form-group">
+                            <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-2">
+                                <div v-on:click.prevent="submit"
+                                     class="btn btn-success">提交
+                                </div>
+                                <div v-on:click="closeModal" class="btn btn-primary">取消</div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="articleModal" v-bind:class="{ show : articleModal.show }" class="modal-1"></div>
+
+    </div>
+    <div id="fileModule">
+
+        <div class="head">
+            <button class="editPage btn btn-default" href="#">编辑页面</button>
+            <p>文件列表管理界面</p>
+            <hr/>
+        </div>
+
+        <div class="middle">
+            <div class="table-header">
+                <button class="btn btn-default" @click="showAddModal">添加文件</button>
+                <p>{{name}}</p>
+            </div>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th style="width: 25%">文件名</th>
+                    <th style="width: 25%">上传时间</th>
+                    <th style="width: 25%">文件类型</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody v-if="fileList.length >= 1">
+                <paginate name="FilePaginate" :list="fileList" :per="pageSize" :container="this"
+                          v-if="fileList.length >= 1">
+                    <tr v-for="(fileItem,index) in paginated('FilePaginate')">
+                        <td>{{fileItem.fileName}}</td>
+                        <td>{{getTime(fileItem.uploadTime)}}</td>
+                        <td>{{getHouZhui(fileItem.filePath)}}</td>
+                        <td>
+                            <button class="btn btn-default" href="#" v-on:click="showEditorModal(fileItem.id)">编辑
+                            </button>
+                            <button class="btn btn-default" href="#" v-on:click="deleteFile(fileItem.id)">删除</button>
+                        </td>
+                    </tr>
+                </paginate>
+                </tbody>
+            </table>
+
+        </div>
+
+        <div class="bottom">
+            <div class="bottom-line">
+                <paginate-links v-if="fileList.length >= 1"
+                                for="FilePaginate"
+                                :show-step-links="true"
+                                :step-links="{next: '下一页',prev: '上一页'}"
+                ></paginate-links>
+
+                <br><br><br>
+                <!--  测试的时候开启
+
+                <pre @click="updateTest"
+                     style="width: 500px;white-space: pre-wrap;word-wrap: break-word;">{{test}}</pre>
+
+                     -->
+            </div>
+        </div>
+
+
+        <div id="fileModalContent" v-bind:class="{ show : fileModal.show }" style="width:45%;top:10%;left:30%;"
+             class="modal-1-inside">
+            <div class="x_panel">
+                <div class="x_title">
+                    <button style="float: right;" v-on:click="closeModal" class="btn btn-default">
+                        关闭页面
+                    </button>
+                    <h2>{{fileModal.type==2 ?'编辑文件':'添加文件'}}</h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <form class="form-horizontal form-label-left input_mask">
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-2">文件名</label>
+                            <div class="col-md-6 col-sm-6 col-xs-6">
+                                <input v-model="fileModal.temp.fileName" type="text" class="form-control"
+                                       placeholder="文件名">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-2">{{fileModal.type==2
+                                ?'修改原文件':'添加文件'}}</label>
+                            <div class="col-md-3 col-sm-3 col-xs-10">
+                                <div class="btn btn-primary col-md-8 col-sm-8 ">
+                                    {{fileModal.fileState?'已选择':'选择文件'}}
+                                    <input v-on:change="changeFileState($event)" type="file" class="fileInput"
+                                    />
+                                </div>
+                                <br><br><br>
+
+                            </div>
+                        </div>
+                        <br>
+                        <div class="ln_solid"></div>
+                        <div class="form-group">
+                            <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-2">
+                                <div v-on:click.prevent="submit"
+                                     class="btn btn-success">提交
+                                </div>
+                                <div v-on:click="closeModal" class="btn btn-primary">取消</div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="fileModal" v-bind:class="{ show : fileModal.show }" class="modal-1"></div>
+
+    </div>
+    <div id="singleArticleModule">
+
+        <div class="head">
+            <button class="editPage btn btn-default" href="#">编辑页面</button>
+            <p>单篇文章管理界面</p>
+            <hr/>
+        </div>
+        <div class="middle">
+            <div class="table-header">
+                <p>{{name}}</p>
+            </div>
+
+            <div class="x_panel">
+                <div class="x_content">
+                    <form class="form-horizontal form-label-left input_mask">
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-2">文章标题</label>
+                            <div class="col-md-6 col-sm-6 col-xs-6">
+                                <input v-model="singleArticle.title" type="text" class="form-control"
+                                       placeholder="文章标题">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-2">标题图片</label>
+                            <div class="col-md-2 col-sm-2 col-xs-10">
+                                <div class="btn btn-primary col-md-8 col-sm-8 ">
+                                    {{fileState?'已选择':'选择文件'}}
+                                    <input v-on:change="changeFileState($event)" type="file" class="fileInput"
+                                    />
+                                </div>
+                                <br><br><br>
+                                <div class="btn btn-primary col-md-8 col-sm-8 " @click.prevent="clearFile">
+                                    清除图片
+                                </div>
+                            </div>
+
+                            <template
+                                    v-if="currentPhotoPath != null & currentPhotoPath !== ''">
+                                <img :src="currentPhotoPath" style="width: 230px;height: 135px"
+                                     class="col-md-7 col-sm-7 ">
+                            </template>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-2">文章简介</label>
+                            <div class="col-md-6 col-sm-6 col-xs-6">
+                                <textarea v-model="singleArticle.description" type="text" class="form-control"
+                                          placeholder="文章简介" rows="7"></textarea>
+                            </div>
+                        </div>
+                        <br>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-2">文章内容</label>
+                            <div class="col-md-8 col-sm-8 ">
+                                <!-- 富文本编辑器 -->
+                                <div id="singleArticleEditor">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ln_solid"></div>
+                        <div class="form-group">
+                            <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-2">
+                                <div v-on:click.prevent="submit"
+                                     class="btn btn-success">提交修改
+                                </div>
+                                <div v-on:click.prevent="getList" style="margin-left: 20px"
+                                     class="btn btn-primary">还原
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <div id="depot">
+        <div class="x_panel modal-2-inside" style="height: 600px" v-bind:class="{ show : show }">
+            <div class="x_title">
+                <button style="float: right;" class="btn btn-default" v-on:click="closeModal">关闭页面</button>
+                <h2>图片库</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content" style="height: 400px">
+                <div class="col-md-2 col-sm-2 " style="float:left;height:100%;border-right: 1px solid #cdcdcd"><br>
+                    <div class="btn btn-primary col-md-12 col-sm-12 ">
+                        直接上传
+                        <input type="file" class="fileInput" v-on:change="fileChange($event)"/>
+                    </div>
+                    <br><br><br>
+                </div>
+
+                <div class="col-md-9 col-sm-9 myScroll" style="height:100%;margin-left: 3%;">
+                    <ul class="myImgList">
+                        <li v-for="(imgItem,index) in depotList" @click="myImgClick(imgItem.id)">
+                            <img :src="imgItem.photoPath" alt="error">
+                            <div class="myImgClick" v-bind:class="{opacityOne:imgItem.show}"></div>
+                            <div class="myImgHover">
+                                <i class="iconfont icon-shanchu" @click="deleteImg(imgItem.id)"></i>
+                            </div>
+                            <!-- v-bind:class="{ opacityOne :imgItem.show}" -->
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12 " style="padding: 3% 0 0 30%;border-top: 1px solid #cdcdcd;">
+                <div v-on:click.prevent="submit" class="btn btn-success">选择图片</div>
+                <div v-on:click.prevent="closeModal" style="margin-left: 5%" class="btn btn-primary">取消选择</div>
+            </div>
+        </div>
+
+        <div id="depotModal" class="modal-2" v-bind:class="{ show : show }"></div>
+    </div>
+
+
+    <div id="link">
+        <div class="x_panel modal-2-inside" style="width:40%;left:30%;top:20%" v-bind:class="{ show : show }">
+            <div class="x_title">
+                <button style="float: right;" class="btn btn-default" v-on:click="closeModal">关闭页面</button>
+                <h2>设置链接</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <br>
+                <div class="form-group">
+                    <label class="control-label col-md-2 col-sm-2 col-xs-2 col-sm-offset-1"
+                           style="line-height: 2">模块种类</label>
+                    <div class="col-md-6 col-sm-6 col-xs-5 ">
+                        <select class="form-control" v-model="currentType">
+                            <option value="轮播多图">轮播多图</option>
+                            <option value="列表多图">列表多图</option>
+                            <option value="文件下载">文件下载</option>
+                            <option value="文章列表">文章列表</option>
+                            <option value="单篇文章">单篇文章</option>
+                        </select>
+                    </div>
+                </div>
+                <br><br><br>
+                <div class="form-group">
+                    <label class="control-label col-md-2 col-sm-2 col-xs-2 col-sm-offset-1"
+                           style="line-height: 2">模块名称</label>
+                    <div class="col-md-6 col-sm-6 col-xs-6 ">
+                        <select class="form-control" v-model="currentModuleId">
+                            <option v-for="module in list" :value="module.id">
+                                {{module.name}}
+                            </option>
+                        </select>
+
+                    </div>
+                </div>
+                <br><br><br>
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12 col-sm-offset-3">
+                <div v-on:click.prevent="submit" class="btn btn-success">确定</div>
+                <div v-on:click.prevent="closeModal" class="btn btn-primary">取消</div>
+            </div>
+        </div>
+
+        <div id="linkModal" class="modal-2" v-bind:class="{ show : show }"></div>
+    </div>
+
+
+</div>
+
+
+</body>
+</html>

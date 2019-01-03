@@ -21,6 +21,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.List;
+import java.util.prefs.BackingStoreException;
 
 @CrossOrigin(origins = "*")
 @Controller
@@ -30,10 +31,8 @@ public class UserController {
     UserService userService;
 
     @RequestMapping("login")
-    @ResponseBody
-    public Json login(UserModel userModel, HttpSession session){
+    public String login(UserModel userModel, HttpSession session){
         Json json = new Json();
-        System.out.println(userModel);
         UserModel user = userService.login(userModel);
         if (user != null){
             SessionInfo sessionInfo = new SessionInfo();
@@ -46,7 +45,8 @@ public class UserController {
             json.setSuccess(false);
             json.setMsg("用户名或密码不正确");
         }
-        return json;
+        System.out.println(userModel);
+        return "redirect:/ExpertStudio/html/backstage.html";
     }
 
     @RequestMapping("register")

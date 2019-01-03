@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <title>注册</title>
     <!-- Bootstrap -->
-    <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/data/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom Theme Style -->
-    <link href="../build/css/custom.min.css" rel="stylesheet">
+    <link href="/data/build/css/custom.min.css" rel="stylesheet">
 
 </head>
 <body style="background-color: #cbcbcb">
