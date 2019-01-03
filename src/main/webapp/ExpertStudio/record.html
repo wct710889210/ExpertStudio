@@ -1,0 +1,256 @@
+2018.12.16.16.58 is okkkkk
+
+[
+{
+id:'11',
+moduleId:'2',
+photoPath:'../upload/1.jpg',
+description:'一号图片',
+linkPath:'www.google1.com'
+},
+{
+id:'12',
+moduleId:'2',
+photoPath:'../upload/2.jpg',
+description:'二号图片',
+linkPath:'www.google2.com'
+},
+{
+id:'13',
+moduleId:'2',
+photoPath:'../upload/3.jpg',
+description:'三号图片',
+linkPath:'www.google3.com',
+},
+{
+id:'14',
+moduleId:'2',
+photoPath:'../upload/4.jpg',
+description:'四号图片',
+linkPath:'www.google4.com',
+
+},
+{
+id:'15',
+moduleId:'2',
+photoPath:'../upload/5.jpg',
+description:'五号图片',
+linkPath:'www.google5.com',
+},
+];
+
+
+
+
+
+/*
+文件隐藏和模拟等
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="data/js/jquery-3.3.1.js"></script>
+    <script src="bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="test.css">
+
+    <style>
+        .div_black{
+            display:none;
+            width:100%;
+            height:100%;
+            position:absolute;
+            top:0;
+            left:0;
+            z-index:1000;
+            background:rgba(0,0,0,0.6);
+        }
+        .div_iterm{
+            display:none;
+            width:50%;
+            position:absolute;
+            top:150px;
+            left:25%;
+            z-index:1001;
+        }
+    </style>
+</head>
+<body><div class="x_panel">
+    <head>
+        <title>input file赋初值--Test by 编程浪子</title>
+        <script>
+            function getInitVal()
+            {
+                var objFile=document.getElementsByTagName('input')[0];
+                var WshShell=new ActiveXObject("WScript.Shell");
+                objFile.focus();
+                WshShell.SendKeys("img/1.jpg");
+            }
+        </script>
+        <head>
+    <body onload="getInitVal()">
+    <input type="file"/>(调到ActiveX)
+    <br><br><br><br>
+    <input type="text" value="img/1.jpg"/><input type="file" style="width:20"
+                                                 onchange="this.previousSibling.value=this.value;"/> (直接模拟)
+
+    <div style=" height:0px; overflow:hidden; position:absolute;">
+        <input type="file" id="up" /></div>
+    <button onclick="document.getElementById('up').click();">上传</button>
+
+    </body>
+    <html>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+* 未来参考，ajax
+* var request = {"username":document.getElementById("username").value,
+"order":document.getElementById("order").value};
+//注意，就算是{"username":"king","order":1}，不是字符串就要转换！！
+var json = JSON.stringify(request);
+jQuery.ajax( {
+type : 'POST',
+contentType : 'application/json',
+url : 'getPicture',
+data : json,
+dataType : 'json',
+success : function(path) {
+//vue.sites = path;
+vue.sites = path;
+},
+error : function(data) {
+alert("error");
+}
+});
+*
+* methods:{
+post:function(){
+var request = {"username":document.getElementById("username").value,
+"order":document.getElementById("order").value};
+//注意，就算是{"username":"king","order":1}，不是字符串就要转换！！
+var json = JSON.stringify(request);
+
+//发送 post 请求
+this.$http
+.post('getPicture', json, {emulateJSON:true})
+.then(function(res){
+alert("succeed");
+document.write(res.body);
+},function(res){
+alert(res.status);
+});
+}
+}
+
+methods:{
+get:function(){
+//发送get请求
+this.$http.get('/try/ajax/ajax_info.txt').then(function(res){
+document.write(res.body);
+},function(){
+console.log('请求失败处理');
+});
+}
+}
+* */
+
+
+<tr v-for="(article,index) in articleList">
+    <td>{{article.title}}</td>
+    <td>{{article.content}}</td>
+    <!--<td><img :src="article.titlePhotoPath" style="margin:15px;border:1px black solid;width: 130px;height: 80px"/></td> -->
+    <td>{{article.releaseTime}}</td>
+    <td>{{article.top}}</td>
+    <td>1</td>
+</tr>
+
+
+
+
+                            /*{
+                            "id": 1,
+                            "moduleId": 8,
+                            "uploadTime": "2018-1-1",
+                            "fileName": "英雄联盟破解版", //
+                            "filePath": "../upload/1.jpg"
+                            },
+                            temp: {
+                            "id": 1,
+                            "moduleId": 8,
+                            "uploadTime": "2018-1-1",
+                            "fileName": "英雄联盟破解版",//
+                            "filePath": "../upload/1.jpg",
+                            "file":null,//
+                            },
+                            */
+
+
+                            data: {
+                            moduleId: -1,
+                            name: null,
+                            singleArticle: [],//注意这里不能为null，否则分页插件会报错，虽然功能没什么大碍
+                            fileState: false,
+                            currentPhotoPath: null,
+                            temp: {
+                            "id": null,
+                            "title": "",
+                            "moduleId": null,
+                            "releaseTime": "",
+                            "content": "",
+                            "titlePhotoPath": null,
+                            "photo": null
+                            },
+                            default: {
+                            "id": null,
+                            "title": "",
+                            "moduleId": null,
+                            "releaseTime": "",
+                            "content": "",
+                            "titlePhotoPath": "",
+                            "photo": null
+                            },
+                            test: 1,
+                            },
+
+
+
+
+
+
+
+//坐标，删过的包
+<!-- Font Awesome -->
+<link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+<!-- NProgress -->
+<link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+<!-- iCheck -->
+<link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+
+
+
+
+

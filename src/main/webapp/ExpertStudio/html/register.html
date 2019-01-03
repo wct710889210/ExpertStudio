@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <!-- Bootstrap -->
+    <link href="/data/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom Theme Style -->
+    <link href="/data/build/css/custom.min.css" rel="stylesheet">
+
+
+    <script type="text/javascript" src="../data/js/vue.js"></script>
+    <script type="text/javascript" src="../data/js/vueResource.js"></script>
+</head>
+<body style="background-color: #cbcbcb">
+<script>
+    const ip = 'http://192.168.1.113:8080';//fxq
+    const backstage = '/ExpertStudio/html/backstage.html';
+</script>
+
+<div id="register" style="width:30%;margin: 10% auto;">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>注册工作室</h2>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <!-- ----------------------------------------------form -->
+            <form method="post" action="/user/register" class="form-horizontal form-label-left input_mask"><br>
+
+                <div class="form-group">
+                    <label class="control-label col-md-4 col-sm-4 col-xs-2">用户名</label>
+                    <div class="col-md-6 col-sm-6 col-xs-6">
+                        <!-------------------------------------------------username-->
+                        <input  v-model="username" name="username" id="username" placeholder="用户名" type="text" class="form-control">
+                    </div>
+                </div><br>
+                <div class="form-group">
+                    <label class="control-label col-md-4 col-sm-4 col-xs-2">昵称</label>
+                    <div class="col-md-6 col-sm-6 col-xs-6">
+                        <!-------------------------------------------------name-->
+                        <input v-model="name" name="name" id="name" placeholder="昵称" type="text" class="form-control">
+                    </div>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label class="control-label col-md-4 col-sm-4 col-xs-2" >密码</label>
+                    <div class="col-md-6 col-sm-6 col-xs-6">
+                        <!-------------------------------------------------password-->
+                        <input v-model="password" name="password" id="password" type="password" class="form-control" placeholder="密码">
+                    </div>
+                </div><br>
+                <div class="ln_solid"></div>
+                <div class="form-group">
+                    <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-4">
+                        <input @click.prevent="register" type="submit" class="btn btn-success" value="注册">
+                        <a class="btn btn-primary" href="login.html">登陆</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    new Vue({
+        el:'#register',
+        data:{
+            username:'',
+            name:'',
+            password:''
+        },
+        methods:{
+            register:function () {
+
+                let formData = new FormData();
+                formData.append('username', this.username);
+                formData.append('name', this.name);
+                formData.append('password', this.password);
+
+                console.log('begin register..... username = '+this.username
+                        +'  name = '+this.name +'   password = '+this.password)
+                this.$http//http://192.168.1.104:8080/multiPhoto/save?moduleId=
+                    .post(ip+'/user/register', formData, {emulateJSON: true})
+                    .then(function (res) {
+                        if(res.body.success===true){
+                            alert("成功！");
+                            window.location.href=backstage;
+                        }
+                        else{
+                            alert(res.body.msg)
+                            console.log(res.body.msg);
+                        }
+                    }, function (res) {
+                        alert("失败！请检查网络");
+                        console.log('save failed ');
+                    });
+            }
+        }
+
+    })
+
+</script>
+</body>
+</html>

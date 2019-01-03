@@ -7,6 +7,7 @@ import com.pwfz.service.ModuleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
 
@@ -16,14 +17,14 @@ import java.util.Map;
 public class ModuleController {
     @Autowired
     private ModuleService moduleService;
-
     /**
      * 获取用户模块
      * @return  模块列表
      */
     @RequestMapping("get")
-    public List<ModuleModel> get(){ //@SessionAttribute SessionInfo sessionInfo
-        int userId = 1;//sessionInfo.getId();
+    public List<ModuleModel> get(@SessionAttribute SessionInfo sessionInfo){
+
+        int userId = sessionInfo.getId();
         return moduleService.get(userId);
     }
 
@@ -62,13 +63,14 @@ public class ModuleController {
      * @return 后台目录结构
      */
     @RequestMapping("backGet")
-    public Json backGet(){
-        int userId = 1;
-
+    public Json backGet(@SessionAttribute SessionInfo sessionInfo){
+        int userId=sessionInfo.getId();
+        System.out.println(userId);
         Json json = new Json();
         json.setMsg("后台目录结构");
         json.setObj(moduleService.backGet(userId));
         json.setSuccess(true);
+       /* System.out.println(sessionInfo);*/
         return json;
     }
 
@@ -77,9 +79,9 @@ public class ModuleController {
      * @return 用户可访问模块
      */
     @RequestMapping("getAccessible")
-    public Json getAccessible(){
-        int userId = 1;
-
+    public Json getAccessible(HttpSession session){
+        SessionInfo sessionInfo= (SessionInfo) session.getAttribute("sessionInfo");
+        int userId=sessionInfo.getId();
         Json json = new Json();
         Map<String,String> result = moduleService.getAccessible(userId);
         json.setSuccess(true);
